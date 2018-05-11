@@ -15,7 +15,7 @@ knitr::opts_chunk$set(echo = FALSE, message = FALSE)
 
 ```{r name-of-crops}
 library(readxl)
-crops <- read_excel('../../data/crops.xlsx')
+crops <- read_excel('../../static/data/crops.xlsx')
 knitr::kable(crops, caption='Name of major cereals')
 ```
 
@@ -23,7 +23,7 @@ knitr::kable(crops, caption='Name of major cereals')
 
 ```{r production, fig.cap='World production of cereals from 1961 to 2016', out.width='100%'}
 library(tidyverse)
-da <- read_csv('../../data/FAOSTAT-data-5-7-2018.csv') %>%
+da <- read_csv('../../static/data/FAOSTAT-data-5-7-2018.csv') %>%
   filter(! Item %in% c('Grain, mixed', 'Cereals, nes')) %>%
   mutate(Item=if_else(Item=='Rice, paddy','Rice',Item)) %>%
   rename(Crop=Item)

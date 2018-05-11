@@ -1,0 +1,44 @@
+baseurl = "https://goteng.org/"
+publishdir = "/public"
+languageCode = "en-us"
+title = "Yadong Liu | 刘亚东"
+theme = "hugo-xmin"
+googleAnalytics = "UA-118280053-1"
+disqusShortname = "yadong1990"
+ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
+preserveTaxonomyNames = true
+footnotereturnlinkcontents = "↩"
+hasCJKLanguage = true
+enableEmoji = true
+
+[permalinks]
+    blog = "/blog/:year/:month/:day/:slug/"
+
+[[menu.main]]
+    name = "Home"
+    url = "/"
+    weight = 1
+[[menu.main]]
+    name = "About"
+    url = "/about/"
+    weight = 2
+[[menu.main]]
+    name = "Publications"
+    url = "/publications/"
+    weight = 3
+[[menu.main]]
+    name = "Software"
+    url = "/software/"
+    weight = 4
+[[menu.main]]
+    name = "Blog"
+    url = "/blog/"
+    weight = 5
+
+[params]
+    description = "Personal website of Yadong Liu; 刘亚东的个人网站"
+    footer = "&copy; 2018 Yadong Liu"
+    
+[[params.logo]]
+    img = "/img/dong.png"
+    alt = "Yadong Liu"

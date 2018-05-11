@@ -1,5 +1,4 @@
 baseurl = "https://goteng.org/"
-publishdir = "/public"
 languageCode = "en-us"
 title = "Yadong Liu | 刘亚东"
 theme = "hugo-xmin"

@@ -10,7 +10,7 @@ title: About me
 
 ## Education
 
-- PhD in Crop Science and Biotechnology, ~2019, [Seoul National University](https://snu.ac.kr)
+- PhD in Crop Science and Biotechnology, ~, [Seoul National University](https://snu.ac.kr)
 - MSc in Crop Cultivation and Farming, 2016, [Qingdao Agricultural University](https://qau.edu.cn)
 - BSc in Agronomy, 2013, [Qingdao Agricultural University](https://qau.edu.cn)
 

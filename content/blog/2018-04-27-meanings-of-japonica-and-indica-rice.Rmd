@@ -1,6 +1,6 @@
 ---
 title: Meanings of Japonica and Indica rice
-date: '2018-04-27'
+date: 2018-04-27
 slug: japonica-and-indica
 categories: []
 tags:

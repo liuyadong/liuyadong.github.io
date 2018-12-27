@@ -9,8 +9,6 @@ output:
   xaringan::moon_reader:
     lib_dir: libs
     nature:
-      highlightStyle: github
-      highlightLines: true
       countIncrementalSlides: false
       beforeInit: "libs/macros.js"
 ---
@@ -182,6 +180,22 @@ Server-side objections start with `ee.`
 [Image collections](https://code.earthengine.google.com/3e23709144204feefabd8caa9092a0c1)
 
 [NDVI](https://code.earthengine.google.com/a0f4573051ed4caf631de157969b1d5d)
+
+--
+
+Numerical operations
+
+Array/Matrix operations
+
+Machine learning
+
+Kernal operations
+
+Geometry operations
+
+Vector/raster operations
+
+...
 
 ---
 background-image: url(figs/function_table.png)

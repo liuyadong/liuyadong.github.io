@@ -1,0 +1,232 @@
+---
+title: "Introduction to Google Earth Engine (GEE)"
+subtitle: "with an example of sturctural similarity (SSIM) index"
+author: |
+  | Yadong Liu
+  | Crop Ecology & Eco Informatics Lab, SNU
+date: "2018/12/28"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      beforeInit: "libs/macros.js"
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+```
+
+# Contents
+
+- Earth Engine overview
+
+- Data structures & operations
+
+- Calculation of Fuzzy SSIM using GEE
+
+---
+class: inverse, center, middle
+
+# Earth Engine overview
+
+---
+background-image: url(figs/gee_overview.png)
+background-size: contain
+
+[https://earthengine.google.com](https://earthengine.google.com)
+
+---
+
+- Earth Engine is a platform for **scientific analysis and visualization** of geospatial datasets, for academic, non-profit, business and government users.
+
+--
+
+- Earth Engine hosts satellite imagery and stores it in a public data archive that includes historical earth images going back **more than forty years**. The images, ingested on a daily basis, are then made available for global-scale data mining.
+
+--
+
+- Earth Engine also provides APIs and other tools to enable the analysis of large datasets.
+
+---
+
+# Datasets
+
+- Over 20 PB
+
+--
+
+- Daily update
+
+--
+
+- Imagery, Climate, Environmental, Geophysical, Socio-economic...
+
+--
+
+- Analysis-ready
+
+--
+
+- Can upload private data
+
+---
+background-image: url(figs/data_table.png)
+background-size: contain
+
+---
+background-image: url(figs/data_catalog.png)
+background-size: contain
+
+[Earth Engine Data Catalog](https://developers.google.com/earth-engine/datasets/catalog)
+
+---
+background-image: url(figs/data_explorer.png)
+background-size: contain
+
+[Earth Engine Data Explorer](https://explorer.earthengine.google.com)
+
+---
+background-image: url(figs/architecture.jpg)
+background-position: 50% 70%
+background-size: 60%
+
+# Architecture
+
+---
+
+# APIs
+
+- Javascript
+
+--
+
+- Python
+
+--
+
+Open source, [hosted on Github](https://github.com/google/earthengine-api)
+
+---
+background-image: url(figs/code_editor.jpg)
+background-position: 50% 100%
+background-size: contain
+
+# [Code Editor](https://code.earthengine.google.com)
+
+---
+background-image: url(figs/apps.png)
+background-size: cover
+
+# [Earth Engine Apps](https://www.earthengine.app)
+
+---
+background-image: url(figs/rs.png)
+background-size: contain
+
+# Application
+
+---
+background-image: url(figs/rse.png)
+background-size: contain
+
+---
+class: inverse, center, middle
+
+# Data structures & Operations
+
+---
+
+# Get started
+
+[Sign up](https://signup.earthengine.google.com)
+
+[Document & Tutorial](https://developers.google.com/earth-engine)
+
+--
+
+## Where to get help?
+
+- [Stack Exchange](https://gis.stackexchange.com/questions/tagged/google-earth-engine)
+
+- [Earth Engine Developers' list](https://groups.google.com/forum/#!forum/google-earth-engine-developers)
+
+---
+
+# Data structuers
+
+Server-side objections start with `ee.`
+
+`Dictionary, List, Array, Geometry, Date, Number, String`
+
+.pull-left[`Image`: one or more raster bands
+
+`ImageCollection`: A set of `Image` (e.g. a time series)
+]
+
+.pull-right[`Feature`: `Geometry` + `Dictionary`
+
+`FeatureCollection`: A set of `Feature`
+]
+
+---
+
+# Operations
+
+[Image visualizing](https://code.earthengine.google.com/a52438761bb3c0697027a216a8aa6c10)
+
+[Computations using Images](https://code.earthengine.google.com/e1125f4342195386a3136718facda8ec)
+
+[Image collections](https://code.earthengine.google.com/3e23709144204feefabd8caa9092a0c1)
+
+[NDVI](https://code.earthengine.google.com/a0f4573051ed4caf631de157969b1d5d)
+
+---
+background-image: url(figs/function_table.png)
+background-size: contain
+
+# Functions
+
+---
+class: inverse, center, middle
+
+# Calculation of Fuzzy SSIM index
+
+---
+
+# SSIM index
+
+$$SSIM(x,y)=\frac{2\mu_x\mu_y+C_1}{\mu_x^2+\mu_y^2+C_1}\cdot\frac{2\sigma_{xy}+C_2}{\sigma_x^2+\sigma_y^2+C_2}$$
+
+.pull-left[![:scale 100%](figs/einstein.gif) reference]
+
+.pull-right[![:scale 100%](figs/blur.gif) blurred]
+
+---
+
+.center[![](figs/convolution.gif)]
+
+Convolution, a kernel-based windowing operation
+
+---
+
+# Fuzzy sets
+
+.center[![](figs/type1.png)]
+
+Turn data into an interval of [0, 1]
+
+---
+class: center, middle
+
+# [Demo](https://code.earthengine.google.com)
+
+---
+class: inverse, center, middle
+
+# Thanks!
+# Happy New Year!
+
+[liuyadong@snu.ac.kr](mailto:liuyadong@snu.ac.kr)

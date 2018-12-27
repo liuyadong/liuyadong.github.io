@@ -13,7 +13,7 @@ class: center, middle, inverse, title-slide
 # Introduction to Google Earth Engine (GEE)
 ## with an example of sturctural similarity (SSIM) index
 ### <div class="line-block">Yadong Liu<br />
-Crop Ecology &amp; Eco Informatics Lab, SNU</div>
+Crop Ecology &amp; Ecoinformatics Lab, SNU</div>
 ### 2018/12/28
 
 ---
@@ -103,11 +103,7 @@ background-size: 60%
 
 - Javascript
 
---
-
 - Python
-
---
 
 Open source, [hosted on Github](https://github.com/google/earthengine-api)
 
@@ -119,20 +115,17 @@ background-size: contain
 # [Code Editor](https://code.earthengine.google.com)
 
 ---
+
+# Publication
+
+![](figs/rs.png)
+![](figs/rse.png)
+
+---
 background-image: url(figs/apps.png)
 background-size: cover
 
 # [Earth Engine Apps](https://www.earthengine.app)
-
----
-background-image: url(figs/rs.png)
-background-size: contain
-
-# Application
-
----
-background-image: url(figs/rse.png)
-background-size: contain
 
 ---
 class: inverse, center, middle
@@ -141,71 +134,149 @@ class: inverse, center, middle
 
 ---
 
-# Get started
+# Data structures
 
-[Sign up](https://signup.earthengine.google.com)
+Server-side objects start with `ee.`
 
-[Document &amp; Tutorial](https://developers.google.com/earth-engine)
+`Dictionary, Date, String, Geometry, List, Number`
 
---
+```js
+var dict = ee.Dictionary({
+  When: ee.Date('2018-12-28'),
+  Where: ee.Geometry.Point([126.9531, 37.4593])
+ })
+```
 
-## Where to get help?
+.pull-left[**`Image`**: one or more raster bands
 
-- [Stack Exchange](https://gis.stackexchange.com/questions/tagged/google-earth-engine)
-
-- [Earth Engine Developers' list](https://groups.google.com/forum/#!forum/google-earth-engine-developers)
-
----
-
-# Data structuers
-
-Server-side objections start with `ee.`
-
-`Dictionary, List, Array, Geometry, Date, Number, String`
-
-.pull-left[`Image`: one or more raster bands
-
-`ImageCollection`: A set of `Image` (e.g. a time series)
+**`ImageCollection`**: A set of `Image` (e.g. a time series)
 ]
 
-.pull-right[`Feature`: `Geometry` + `Dictionary`
+.pull-right[**`Feature`**: `Geometry` + `Dictionary`
 
-`FeatureCollection`: A set of `Feature`
+**`FeatureCollection`**: A set of `Feature`
+
+`Geometry` can be `Point, MultiPoint, Polygon, MultiPolygon, Rectangle, LineString LinearRing`
 ]
 
 ---
 
-# Operations
+# Image visualizing
 
-[Image visualizing](https://code.earthengine.google.com/a52438761bb3c0697027a216a8aa6c10)
+```js
+// Load SRTM Digital Elevation Data Version 4
+var srtm = ee.Image("CGIAR/SRTM90_V4");
 
-[Computations using Images](https://code.earthengine.google.com/e1125f4342195386a3136718facda8ec)
+// Center on SNU
+Map.setCenter(126.9531, 37.4593, 8);
 
-[Image collections](https://code.earthengine.google.com/3e23709144204feefabd8caa9092a0c1)
+// Display the image on the map
+Map.addLayer(srtm);
 
-[NDVI](https://code.earthengine.google.com/a0f4573051ed4caf631de157969b1d5d)
-
---
-
-Numerical operations
-
-Array/Matrix operations
-
-Machine learning
-
-Kernal operations
-
-Geometry operations
-
-Vector/raster operations
-
-...
+// Custom visualization
+Map.addLayer(srtm, {min: 0, max: 1000, palette: ['blue', 'green', 'red']}, 'custom visualization');
+```
 
 ---
-background-image: url(figs/function_table.png)
+background-image: url(figs/visualizing1.png)
+background-size: contain
+---
+background-image: url(figs/visualizing2.png)
 background-size: contain
 
-# Functions
+---
+
+# Computation using Image
+
+```js
+// Compute the mean elevation in SNU
+var meanelev = srtm.reduceRegion({
+  reducer: ee.Reducer.mean(),
+  geometry: SNU,
+  scale: 90
+});
+
+// Get the mean from the dictionary and print it
+print('Mean elevation', meanelev.get('elevation'));
+*Mean elevation
+*133.70660247415785
+
+// Get the mean slope in SNU
+var slope = ee.Terrain.slope(srtm);
+var meanslope = slope.reduceRegion({
+  reducer: ee.Reducer.mean(),
+  geometry: SNU,
+  scale: 90
+});
+print('Mean slope', meanslope.get('slope'));
+*Mean slope
+*8.78408882924111
+```
+
+---
+
+# Computation using Image collection
+
+```js
+// USGS Landsat 8 Collection 1 Tier 1 TOA Reflectance dataset
+var l8 = ee.ImageCollection('LANDSAT/LC08/C01/T1_TOA');
+var snu = ee.Geometry.Point(126.9531,37.4593)
+
+// Filtering on spatial and temporal criterias
+var spatialFiltered = l8.filterBounds(snu);
+var temporalFiltered = spatialFiltered.filterDate('2018-01-01', '2018-12-31');
+
+// Get the least cloudy image
+var sorted = temporalFiltered.sort('CLOUD_COVER');
+var scene = ee.Image(sorted.first());
+
+// Display true color
+Map.centerObject(scene, 8);
+var visParams = {bands: ['B4', 'B3', 'B2'], max: 0.3};
+Map.addLayer(scene, visParams, 'true-color composite');
+```
+---
+background-image: url(figs/true_color.png)
+background-size: contain
+---
+
+# NDVI
+
+```js
+// Compute the Normalized Difference Vegation Index (NDVI)
+// NDVI = (NIR - red) / (NIR + red)
+var nir = scene.select('B5');
+var red = scene.select('B4');
+var ndvi = nir.subtract(red).divide(nir.add(red)).rename('NDVI');
+
+*// Built-in normalizedDifference function
+*var ndvi = scene.normalizedDifference(['B5', 'B4']).rename('NDVI');
+
+// Display NDVI
+var ndviParams = {min: -1, max: 1, palette: ['blue', 'white', 'green']};
+Map.addLayer(ndvi, ndviParams, 'NDVI image');
+```
+
+---
+background-image: url(figs/ndvi.png)
+background-size: contain
+---
+
+# Other operations
+
+- Numerical operations
+
+- Array/Matrix operations
+
+- Machine learning
+
+- Kernal operations
+
+- Geometry operations
+
+- Vector/raster operations
+
+- ...
 
 ---
 class: inverse, center, middle
@@ -237,9 +308,93 @@ Convolution, a kernel-based windowing operation
 Turn data into an interval of [0, 1]
 
 ---
-class: center, middle
 
-# [Let's Go](https://code.earthengine.google.com)
+```js
+var fssim = function(x, y, kernel, xmin, xmax, ymin, ymax){
+  var aoi = ee.Geometry(x.geometry().getInfo(), null, false);
+  while (xmin === undefined) xmin = x.reduceRegion(ee.Reducer.min(), aoi).get('b1');
+  while (xmax === undefined) xmax = x.reduceRegion(ee.Reducer.max(), aoi).get('b1');
+  while (ymin === undefined) ymin = y.reduceRegion(ee.Reducer.min(), aoi).get('b1');
+  while (ymax === undefined) ymax = y.reduceRegion(ee.Reducer.max(), aoi).get('b1');
+  x = x.clamp(xmin, xmax).unitScale(xmin, xmax);
+  y = y.clamp(ymin, ymax).unitScale(ymin, ymax);
+  
+  var mux = x.reduceNeighborhood(ee.Reducer.mean(), kernel);
+  var muy = y.reduceNeighborhood(ee.Reducer.mean(), kernel);
+  var muxx = x.pow(2).reduceNeighborhood(ee.Reducer.mean(), kernel);
+  var muyy = y.pow(2).reduceNeighborhood(ee.Reducer.mean(), kernel);
+  var muxy = x.multiply(y).reduceNeighborhood(ee.Reducer.mean(), kernel);
+  var varx = muxx.subtract(mux.pow(2));
+  var vary = muyy.subtract(muy.pow(2));
+  var covxy = muxy.subtract(mux.multiply(muy));
+
+  var C1 = ee.Number(0.0001);
+  var C2 = ee.Number(0.0009);
+  var ssim = (mux.multiply(muy).multiply(2).add(C1))
+    .divide(mux.pow(2).add(muy.pow(2).add(C1)))
+    .multiply(covxy.multiply(2).add(C2))
+    .divide(varx.add(vary).add(C2));
+  return ssim;
+};
+```
+
+---
+
+```js
+// Load annual solar radiation and temperature data
+var srad_5m = ee.Image("users/liuyadong828/wc_20_5m_srad");
+var tavg_5m = ee.Image("users/liuyadong828/wc_20_5m_tavg");
+
+// Calculation of fuzzy ssim
+var kernel = ee.Kernel.gaussian(5, 1.5);
+var ssim = fssim(srad_5m, tavg_5m, kernel).rename('fssim')
+
+var info = ssim.getInfo().bands[0];
+var aoi = ee.Geometry(ssim.geometry().getInfo(), null, false);
+
+// Display the result
+var palettes = require('users/gena/packages:palettes');
+var vis = {min: 0.5, max: 1, palette: palettes.cmocean.Haline[7]};
+Map.addLayer(ssim.reproject(info.crs, info.crs_transform), vis, 'fuzzy ssim');
+```
+
+---
+background-image: url(figs/fssim.png)
+background-size: contain
+---
+background-image: url(figs/histogram.png)
+background-size: contain
+
+```js
+// Plot the histogram
+var histogram = ui.Chart.image.histogram({image: ssim, region: aoi});
+print(histogram);
+```
+
+---
+
+```js
+// Export the result as a tif file to google drive
+Export.image.toDrive({
+  image: ssim.toFloat(), // save as 32-bits
+  region: aoi,
+  dimensions: '4320x2160'
+});
+
+// Export the statistics as a csv file to google drive
+var reducers = ee.Reducer.mean().combine({
+  reducer2: ee.Reducer.minMax(),
+  sharedInputs: true
+});
+var ssimstat = ssim.reduceRegion({reducer: reducers, geometry:aoi});
+var feature = ee.Feature(null, ssimstat);
+var ssimstatfc = ee.FeatureCollection([feature]);
+
+Export.table.toDrive({
+  collection: ssimstatfc,
+  fileFormat: 'CSV'
+});
+```
 
 ---
 class: inverse, center, middle
@@ -252,6 +407,8 @@ class: inverse, center, middle
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script src="libs/macros.js"></script>
 <script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
 "countIncrementalSlides": false
 });
 if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {

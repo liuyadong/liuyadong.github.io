@@ -51,6 +51,13 @@ background-size: contain
 - Earth Engine also provides APIs and other tools to enable the analysis of large datasets.
 
 ---
+background-image: url(figs/architecture.jpg)
+background-position: 50% 70%
+background-size: 60%
+
+# Architecture
+
+---
 
 # Datasets
 
@@ -87,13 +94,6 @@ background-image: url(figs/data_explorer.png)
 background-size: contain
 
 [Earth Engine Data Explorer](https://explorer.earthengine.google.com)
-
----
-background-image: url(figs/architecture.jpg)
-background-position: 50% 70%
-background-size: 60%
-
-# Architecture
 
 ---
 

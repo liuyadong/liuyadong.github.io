@@ -23,7 +23,7 @@ enableEmoji = true
 
 [params]
     description = "Personal website of Yadong Liu; 刘亚东的个人网站"
-    footer = "&copy; [Yadong Liu](https://yadong.site) 2018 -- 2019 | [Github](https://github.com/liuyadong) | [Twitter](https://twitter.com/yadong1990)"
+    footer = "&copy; [Yadong Liu](/) 2018 - 2019"
     
 [[params.logo]]
     img = "/img/dong.png"

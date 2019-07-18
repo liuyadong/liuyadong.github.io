@@ -7,6 +7,6 @@ date: '2019-07-13'
 
 # Yadong Liu
 
-I am a PhD candidate of Crop Science at [Seoul National University](https://snu.ac.kr), currently working on crop modeling.
+I am a PhD candidate in Crop Science at [Seoul National University](https://snu.ac.kr), Korea. My main research topics are crop modeling, plant phenomics, and precise agriculture.
 
-这里是刘亚东的个人主页。目前就读于首尔大学[作物科学系](http://calslab.snu.ac.kr/agronomy/)。
+You can email me: [liuyadong@snu.ac.kr](mailto:liuyadong@snu.ac.kr).

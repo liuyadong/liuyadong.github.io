@@ -17,18 +17,13 @@ enableEmoji = true
     url = "/"
     weight = 1
 [[menu.main]]
-    name = "About"
-    url = "/about/"
-    weight = 2
-[[menu.main]]
     name = "Post"
     url = "/post/"
-    weight = 3
-
+    weight = 2
 
 [params]
     description = "Personal website of Yadong Liu; 刘亚东的个人网站"
-    footer = "&copy; 2019 Yadong Liu"
+    footer = "&copy; [Yadong Liu](https://yadong.site) 2018 -- 2019 | [Github](https://github.com/liuyadong) | [Twitter](https://twitter.com/yadong1990)"
     
 [[params.logo]]
     img = "/img/dong.png"

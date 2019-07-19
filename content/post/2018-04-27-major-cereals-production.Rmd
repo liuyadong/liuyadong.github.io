@@ -1,7 +1,7 @@
 ---
-title: Meanings of Japonica and Indica rice
+title: World production of major cereals
 date: 2018-04-27
-slug: japonica-and-indica
+slug: major-cereals-production
 categories: []
 tags:
   - 遇见
@@ -26,9 +26,10 @@ library(tidyverse)
 da <- read_csv('../../static/data/FAOSTAT-data-5-7-2018.csv') %>%
   filter(! Item %in% c('Grain, mixed', 'Cereals, nes')) %>%
   mutate(Item=if_else(Item=='Rice, paddy','Rice',Item)) %>%
-  rename(Crop=Item)
+  rename(Crop=Item) %>% 
+  spread(Element,Value)
 
-p <- ggplot(da)+aes(x=Year,y=Value,color=Crop)+
+p <- ggplot(da)+aes(x=Year,y=Production,color=Crop)+
   geom_point()+geom_line()+
   labs(x='Year',y='Production (tonne)')
 plotly::ggplotly(p)

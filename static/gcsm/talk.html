@@ -25,25 +25,24 @@ class: center, middle, inverse, title-slide
 
 A single metric can not fully characterize the fit between the predicted and observed data.
 
-&lt;img src="talk_files/figure-html/unnamed-chunk-5-1.png" width="50%" /&gt;&lt;img src="talk_files/figure-html/unnamed-chunk-5-2.png" width="50%" /&gt;
+&lt;img src="talk_files/figure-html/unnamed-chunk-1-1.png" width="50%" /&gt;&lt;img src="talk_files/figure-html/unnamed-chunk-1-2.png" width="50%" /&gt;
 
 ---
 # SSIM &amp; GCSM
 
 - Strctural Similarity (SSIM)
-
 - Composite similarity measure based on Means, Standard deviations and Correlation coefficient (CMSC)
+
+`$$S(x, y)=s_{1}(x, y) \cdot s_{2}(x, y) \cdot s_{3}(x, y)$$`
 
 Developed for image quality assessment and have been suggested as a diagnostic tool for spatial modeling.
 
 Natively defined with the moving window.
 
-&lt;img src="convolution.gif" width="45%" style="display: block; margin: auto 0 auto auto;" /&gt;
+&lt;img src="convolution.gif" width="42%" style="display: block; margin: auto 0 auto auto;" /&gt;
 
 ---
 # Calculation of SSIM and CMSC
-
-`$$S(x, y)=s_{1}(x, y) \cdot s_{2}(x, y) \cdot s_{3}(x, y)$$`
 
 &lt;table&gt;
  &lt;thead&gt;
@@ -97,16 +96,16 @@ Natively defined with the moving window.
 ---
 # Use the original Euclidean distance
 
-&lt;img src="talk_files/figure-html/unnamed-chunk-9-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="talk_files/figure-html/unnamed-chunk-5-1.png" style="display: block; margin: auto;" /&gt;
 
 ---
 # Determination of s1 for positive and negative correlation
 
-&lt;img src="talk_files/figure-html/unnamed-chunk-10-1.png" width="50%" /&gt;&lt;img src="talk_files/figure-html/unnamed-chunk-10-2.png" width="50%" /&gt;
+&lt;img src="talk_files/figure-html/unnamed-chunk-6-1.png" width="50%" /&gt;&lt;img src="talk_files/figure-html/unnamed-chunk-6-2.png" width="50%" /&gt;
 
 ---
 
-&lt;img src="talk_files/figure-html/unnamed-chunk-11-1.png" width="42%" /&gt;&lt;img src="talk_files/figure-html/unnamed-chunk-11-2.png" width="42%" /&gt;&lt;img src="talk_files/figure-html/unnamed-chunk-11-3.png" width="42%" /&gt;&lt;img src="talk_files/figure-html/unnamed-chunk-11-4.png" width="42%" /&gt;
+&lt;img src="talk_files/figure-html/unnamed-chunk-7-1.png" width="42%" /&gt;&lt;img src="talk_files/figure-html/unnamed-chunk-7-2.png" width="42%" /&gt;&lt;img src="talk_files/figure-html/unnamed-chunk-7-3.png" width="42%" /&gt;&lt;img src="talk_files/figure-html/unnamed-chunk-7-4.png" width="42%" /&gt;
 
 ---
 # Application of fuzzy sets
@@ -120,7 +119,7 @@ Reference: Average Annual GPP from MPI
 
 Distortion: Gaussian noise with different standard deviation
 
-&lt;img src="talk_files/figure-html/unnamed-chunk-12-1.png" width="50%" /&gt;&lt;img src="talk_files/figure-html/unnamed-chunk-12-2.png" width="50%" /&gt;
+&lt;img src="talk_files/figure-html/unnamed-chunk-8-1.png" width="50%" /&gt;&lt;img src="talk_files/figure-html/unnamed-chunk-8-2.png" width="50%" /&gt;
 
 ---
 # Case studies

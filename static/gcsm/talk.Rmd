@@ -45,37 +45,41 @@ tb3 %>%
 ```
 
 ---
-# Composite measures
+# SSIM & GCSM
 
 - Strctural Similarity (SSIM)
 
 - Composite similarity measure based on Means, Standard deviations and Correlation coefficient (CMSC)
 
-$$S(x, y)=s_{1}(x, y) \cdot s_{2}(x, y) \cdot s_{3}(x, y)$$
-
 Developed for image quality assessment and have been suggested as a diagnostic tool for spatial modeling.
 
 Natively defined with the moving window.
 
+```{r, fig.align='right', out.width='45%'}
+knitr::include_graphics('convolution.gif')
+```
+
 ---
 # Calculation of SSIM and CMSC
 
+$$S(x, y)=s_{1}(x, y) \cdot s_{2}(x, y) \cdot s_{3}(x, y)$$
+
 ```{r}
 eqns <- read_csv('equation.csv')
-eqns %>% knitr::kable(format='html',escape=FALSE)
+eqns %>% tail(3) %>% knitr::kable(format='html',escape=FALSE)
 ```
-
 
 ---
 # Limitations
 
 1. SSIM requires both variabels have the same sign, which is resolved by its variant CMSC.
-
 2. CMSC uses the squared Euclidean distance which leads to a nonlinear responce curve.
-
 3. Poor performance for variables that negatively correlated.
-
 4. Can not compare variables with different scales.
+
+```{r, fig.align='center',out.width='70%'}
+knitr::include_graphics('fig1-1.png')
+```
 
 ---
 # Generic composite similarity measure (GCSM)
@@ -120,8 +124,17 @@ tb1 %>%
   geom_point()+geom_abline(linetype='dashed')+
   geom_point(aes(mean(x),mean(y)),color='red')+
   annotate('segment',x=0.6,xend=0.6,y=mean(tb1$y),yend=0.6,arrow=arrow(angle=15,ends='both',length=unit(0.2,'inches')),color='blue')+
-  annotate(geom='text',x=0.75,y=0.4,label='d[1]==0.201',parse=T,size=8)+
-  annotate(geom='text',x=0.75,y=0.3,label='s[1]==0.799',parse=T,size=8)+
+  annotate(geom='text',x=0.75,y=0.4, label='d[1]==0.201',parse=T,size=6)+
+  annotate(geom='text',x=0.75,y=0.35,label='s[1]==0.799',parse=T,size=6)+
+  annotate(geom='text',x=0.75,y=0.3, label='s[2]==0.994',parse=T,size=6)+
+  annotate(geom='text',x=0.75,y=0.25,label='s[3]==0.987',parse=T,size=6)+
+  annotate(geom='text',x=0.75,y=0.2, label='GCSM==0.784',parse=T,size=6)+
+  
+  annotate(geom='text',x=0.25,y=0.6, label='d[1]==0.040',parse=T,size=6)+
+  annotate(geom='text',x=0.25,y=0.55,label='s[1]==0.960',parse=T,size=6)+
+  annotate(geom='text',x=0.25,y=0.5, label='s[2]==0.994',parse=T,size=6)+
+  annotate(geom='text',x=0.25,y=0.45,label='s[3]==0.987',parse=T,size=6)+
+  annotate(geom='text',x=0.25,y=0.4, label='CMSC==0.942',parse=T,size=6)+
   xlim(0,1)+ylim(0,1)+
   theme_bw(14)
 tb2 %>% 
@@ -129,8 +142,17 @@ tb2 %>%
   geom_point()+geom_abline(slope=-1,intercept=1,linetype='dashed',)+
   geom_point(aes(mean(x),mean(y)),color='red')+
   annotate('segment',x=0.4,xend=0.4,y=mean(tb2$y),yend=0.6,arrow=arrow(angle=15,ends='both',length=unit(0.2,'inches')),color='blue')+
-  annotate(geom='text',x=0.25,y=0.4,label='d[1]==0.201',parse=T,size=8)+
-  annotate(geom='text',x=0.25,y=0.3,label='s[1]==0.799',parse=T,size=8)+
+  annotate(geom='text',x=0.25,y=0.4, label='d[1]==0.201',parse=T,size=6)+
+  annotate(geom='text',x=0.25,y=0.35,label='s[1]==0.799',parse=T,size=6)+
+  annotate(geom='text',x=0.25,y=0.3, label='s[2]==0.994',parse=T,size=6)+
+  annotate(geom='text',x=0.25,y=0.25,label='s[3]==-0.987',parse=T,size=6)+
+  annotate(geom='text',x=0.25,y=0.2, label='GCSM==-0.784',parse=T,size=6)+
+  
+  annotate(geom='text',x=0.75,y=0.6, label='d[1]==0.001',parse=T,size=6)+
+  annotate(geom='text',x=0.75,y=0.55,label='s[1]==0.999',parse=T,size=6)+
+  annotate(geom='text',x=0.75,y=0.5, label='s[2]==0.994',parse=T,size=6)+
+  annotate(geom='text',x=0.75,y=0.45,label='s[3]==-0.987',parse=T,size=6)+
+  annotate(geom='text',x=0.75,y=0.4, label='CMSC==-0.980',parse=T,size=6)+
   xlim(0,1)+ylim(0,1)+
   theme_bw(14)
 ```
@@ -153,9 +175,7 @@ plotfig <- function(df,shape,slope,intercept,xloc,yloc){
     geom_point(shape=shape)+
     geom_abline(linetype='dashed',slope=slope,intercept=intercept)+
     geom_text(aes(x,y,label=label),data=labels,parse=T,size=6)+
-    # coord_cartesian(expand=F)+
-    scale_x_continuous(limits=c(0,1),breaks=c(0,1),labels=c('min','max'))+
-    scale_y_continuous(limits=c(0,1),breaks=c(0,1),labels=c('min','max'))
+    xlim(0,1)+ylim(0,1)
 }
 set.seed(2019)
 noise <- rnorm(81,0,0.02)
@@ -167,13 +187,13 @@ tb3 <- tibble(x=seq(0.4,0.8,length.out=81),y=x*1.5-0.3+noise2)
 tb4 <- tibble(x=seq(0.6,0.2,length.out=81),y=-1.5*x+1.2+noise2)
 
 plotfig(tb1,'circle', 1,0,0.8,0.44)+
-  theme_bw(14)+theme(panel.grid=element_blank())
+  theme_bw(14)
 plotfig(tb2,'circle open',-1,1,0.2,0.44)+
-  theme_bw(14)+theme(panel.grid=element_blank())
+  theme_bw(14)
 plotfig(tb3,'triangle',1,0,0.55,0.94)+
-  theme_bw(14)+theme(panel.grid=element_blank())
+  theme_bw(14)
 plotfig(tb4,'triangle open',-1,1,0.45,0.94)+
-  theme_bw(14)+theme(panel.grid=element_blank())
+  theme_bw(14)
 ```
 
 ---

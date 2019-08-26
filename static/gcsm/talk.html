@@ -25,23 +25,25 @@ class: center, middle, inverse, title-slide
 
 A single metric can not fully characterize the fit between the predicted and observed data.
 
-&lt;img src="talk_files/figure-html/unnamed-chunk-1-1.png" width="50%" /&gt;&lt;img src="talk_files/figure-html/unnamed-chunk-1-2.png" width="50%" /&gt;
+&lt;img src="talk_files/figure-html/unnamed-chunk-5-1.png" width="50%" /&gt;&lt;img src="talk_files/figure-html/unnamed-chunk-5-2.png" width="50%" /&gt;
 
 ---
-# Composite measures
+# SSIM &amp; GCSM
 
 - Strctural Similarity (SSIM)
 
 - Composite similarity measure based on Means, Standard deviations and Correlation coefficient (CMSC)
 
-`$$S(x, y)=s_{1}(x, y) \cdot s_{2}(x, y) \cdot s_{3}(x, y)$$`
-
 Developed for image quality assessment and have been suggested as a diagnostic tool for spatial modeling.
 
 Natively defined with the moving window.
 
+&lt;img src="convolution.gif" width="45%" style="display: block; margin: auto 0 auto auto;" /&gt;
+
 ---
 # Calculation of SSIM and CMSC
+
+`$$S(x, y)=s_{1}(x, y) \cdot s_{2}(x, y) \cdot s_{3}(x, y)$$`
 
 &lt;table&gt;
  &lt;thead&gt;
@@ -52,31 +54,6 @@ Natively defined with the moving window.
   &lt;/tr&gt;
  &lt;/thead&gt;
 &lt;tbody&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; \(\mu_{x}\) &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; \(\sum_{i=1}^{N} w_{i} x_{i}\) &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; \(\frac{1}{N} \sum_{i=1}^{N} x_{i}\) &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; \(\mu_{y}\) &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; \(\sum_{i=1}^{N} w_{i} y_{i}\) &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; \(\frac{1}{N} \sum_{i=1}^{N} y_{i}\) &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; \(\sigma_{x}^{2}\) &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; \(\sum_{i=1}^{N} w_{i}\left(x_{i}-\mu_{x}\right)^{2}\) &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; \(\frac{1}{N-1} \sum_{i=1}^{N}\left(x_{i}-\mu_{x}\right)^{2}\) &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; \(\sigma_{y}^{2}\) &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; \(\sum_{i=1}^{N} w_{i}\left(y_{i}-\mu_{y}\right)^{2}\) &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; \(\frac{1}{N-1} \sum_{i=1}^{N}\left(y_{i}-\mu_{y}\right)^{2}\) &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; \(\sigma_{x y}\) &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; \(\sum_{i=1}^{N} w_{i}\left(x_{i}-\mu_{x}\right)\left(y_{i}-\mu_{y}\right)\) &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; \(\frac{1}{N-1} \sum_{i=1}^{N}\left(x_{i}-\mu_{x}\right)\left(y_{i}-\mu_{y}\right)\) &lt;/td&gt;
-  &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:left;"&gt; \(s_{1}\) &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; \(1-\frac{\left(\mu_{x}-\mu_{y}\right)^{2}}{\mu_{x}^{2}+\mu_{y}^{2}+c_{1}}\) &lt;/td&gt;
@@ -95,17 +72,15 @@ Natively defined with the moving window.
 &lt;/tbody&gt;
 &lt;/table&gt;
 
-
 ---
 # Limitations
 
 1. SSIM requires both variabels have the same sign, which is resolved by its variant CMSC.
-
 2. CMSC uses the squared Euclidean distance which leads to a nonlinear responce curve.
-
 3. Poor performance for variables that negatively correlated.
-
 4. Can not compare variables with different scales.
+
+&lt;img src="fig1-1.png" width="70%" style="display: block; margin: auto;" /&gt;
 
 ---
 # Generic composite similarity measure (GCSM)
@@ -122,16 +97,16 @@ Natively defined with the moving window.
 ---
 # Use the original Euclidean distance
 
-&lt;img src="talk_files/figure-html/unnamed-chunk-3-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="talk_files/figure-html/unnamed-chunk-9-1.png" style="display: block; margin: auto;" /&gt;
 
 ---
 # Determination of s1 for positive and negative correlation
 
-&lt;img src="talk_files/figure-html/unnamed-chunk-4-1.png" width="50%" /&gt;&lt;img src="talk_files/figure-html/unnamed-chunk-4-2.png" width="50%" /&gt;
+&lt;img src="talk_files/figure-html/unnamed-chunk-10-1.png" width="50%" /&gt;&lt;img src="talk_files/figure-html/unnamed-chunk-10-2.png" width="50%" /&gt;
 
 ---
 
-&lt;img src="talk_files/figure-html/unnamed-chunk-5-1.png" width="42%" /&gt;&lt;img src="talk_files/figure-html/unnamed-chunk-5-2.png" width="42%" /&gt;&lt;img src="talk_files/figure-html/unnamed-chunk-5-3.png" width="42%" /&gt;&lt;img src="talk_files/figure-html/unnamed-chunk-5-4.png" width="42%" /&gt;
+&lt;img src="talk_files/figure-html/unnamed-chunk-11-1.png" width="42%" /&gt;&lt;img src="talk_files/figure-html/unnamed-chunk-11-2.png" width="42%" /&gt;&lt;img src="talk_files/figure-html/unnamed-chunk-11-3.png" width="42%" /&gt;&lt;img src="talk_files/figure-html/unnamed-chunk-11-4.png" width="42%" /&gt;
 
 ---
 # Application of fuzzy sets
@@ -145,7 +120,7 @@ Reference: Average Annual GPP from MPI
 
 Distortion: Gaussian noise with different standard deviation
 
-&lt;img src="talk_files/figure-html/unnamed-chunk-6-1.png" width="50%" /&gt;&lt;img src="talk_files/figure-html/unnamed-chunk-6-2.png" width="50%" /&gt;
+&lt;img src="talk_files/figure-html/unnamed-chunk-12-1.png" width="50%" /&gt;&lt;img src="talk_files/figure-html/unnamed-chunk-12-2.png" width="50%" /&gt;
 
 ---
 # Case studies

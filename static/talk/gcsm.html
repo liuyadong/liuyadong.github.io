@@ -41,6 +41,62 @@ Developed for image quality assessment and have been suggested as a diagnostic t
 Natively defined with the moving window.
 
 ---
+# Calculation of SSIM and CMSC
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; Term &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; SSIM &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; CMSC &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; `\(\mu_{x}\)` &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; `\(\sum_{i=1}^{N} w_{i} x_{i}\)` &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; `\(\frac{1}{N} \sum_{i=1}^{N} x_{i}\)` &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; `\(\mu_{y}\)` &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; `\(\sum_{i=1}^{N} w_{i} y_{i}\)` &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; `\(\frac{1}{N} \sum_{i=1}^{N} y_{i}\)` &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; `\(\sigma_{x}^{2}\)` &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; `\(\sum_{i=1}^{N} w_{i}\left(x_{i}-\mu_{x}\right)^{2}\)` &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; `\(\frac{1}{N-1} \sum_{i=1}^{N}\left(x_{i}-\mu_{x}\right)^{2}\)` &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; `\(\sigma_{y}^{2}\)` &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; `\(\sum_{i=1}^{N} w_{i}\left(y_{i}-\mu_{y}\right)^{2}\)` &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; `\(\frac{1}{N-1} \sum_{i=1}^{N}\left(y_{i}-\mu_{y}\right)^{2}\)` &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; `\(\sigma_{x y}\)` &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; `\(\sum_{i=1}^{N} w_{i}\left(x_{i}-\mu_{x}\right)\left(y_{i}-\mu_{y}\right)\)` &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; `\(\frac{1}{N-1} \sum_{i=1}^{N}\left(x_{i}-\mu_{x}\right)\left(y_{i}-\mu_{y}\right)\)` &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; `\(s_{1}\)` &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; `\(1-\frac{\left(\mu_{x}-\mu_{y}\right)^{2}}{\mu_{x}^{2}+\mu_{y}^{2}+c_{1}}\)` &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; `\(1-\left(\frac{\mu_{x}-\mu_{y}}{max-min}\right)^{2}\)` &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; `\(s_{2}\)` &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; `\(1-\frac{\left(\sigma_{x}-\sigma_{y}\right)^{2}}{\sigma_{x}^{2}+\sigma_{y}^{2}+c_{2}}\)` &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; `\(1-\left[\frac{\sigma_{x}-\sigma_{y}}{\left(max-min\right)/2}\right]^{2}\)` &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; `\(s_{3}\)` &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; `\(\frac{\sigma_{x y}+c_{3}}{\sigma_{x} \sigma_{y}+c_{3}}\)` &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; `\(\frac{\sigma_{x y}}{\sigma_{x} \sigma_{y}}\)` &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+
+---
 # Limitations
 
 1. SSIM requires both variabels have the same sign, which is resolved by its variant CMSC.
@@ -66,16 +122,16 @@ Natively defined with the moving window.
 ---
 # Use the original Euclidean distance
 
-&lt;img src="gcsm_files/figure-html/unnamed-chunk-2-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="gcsm_files/figure-html/unnamed-chunk-3-1.png" style="display: block; margin: auto;" /&gt;
 
 ---
 # Determination of s1 for positive and negative correlation
 
-&lt;img src="gcsm_files/figure-html/unnamed-chunk-3-1.png" width="50%" /&gt;&lt;img src="gcsm_files/figure-html/unnamed-chunk-3-2.png" width="50%" /&gt;
+&lt;img src="gcsm_files/figure-html/unnamed-chunk-4-1.png" width="50%" /&gt;&lt;img src="gcsm_files/figure-html/unnamed-chunk-4-2.png" width="50%" /&gt;
 
 ---
 
-&lt;img src="gcsm_files/figure-html/unnamed-chunk-4-1.png" width="42%" /&gt;&lt;img src="gcsm_files/figure-html/unnamed-chunk-4-2.png" width="42%" /&gt;&lt;img src="gcsm_files/figure-html/unnamed-chunk-4-3.png" width="42%" /&gt;&lt;img src="gcsm_files/figure-html/unnamed-chunk-4-4.png" width="42%" /&gt;
+&lt;img src="gcsm_files/figure-html/unnamed-chunk-5-1.png" width="42%" /&gt;&lt;img src="gcsm_files/figure-html/unnamed-chunk-5-2.png" width="42%" /&gt;&lt;img src="gcsm_files/figure-html/unnamed-chunk-5-3.png" width="42%" /&gt;&lt;img src="gcsm_files/figure-html/unnamed-chunk-5-4.png" width="42%" /&gt;
 
 ---
 # Application of fuzzy sets
@@ -89,7 +145,7 @@ Reference: Average Annual GPP from MPI
 
 Distortion: Gaussian noise with different standard deviation
 
-&lt;img src="gcsm_files/figure-html/unnamed-chunk-5-1.png" width="50%" /&gt;&lt;img src="gcsm_files/figure-html/unnamed-chunk-5-2.png" width="50%" /&gt;
+&lt;img src="gcsm_files/figure-html/unnamed-chunk-6-1.png" width="50%" /&gt;&lt;img src="gcsm_files/figure-html/unnamed-chunk-6-2.png" width="50%" /&gt;
 
 ---
 # Case studies

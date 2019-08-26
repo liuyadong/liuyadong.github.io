@@ -58,6 +58,15 @@ Developed for image quality assessment and have been suggested as a diagnostic t
 Natively defined with the moving window.
 
 ---
+# Calculation of SSIM and CMSC
+
+```{r}
+eqns <- read_csv('equation.csv')
+eqns %>% knitr::kable(format='html')
+```
+
+
+---
 # Limitations
 
 1. SSIM requires both variabels have the same sign, which is resolved by its variant CMSC.

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="generator" content="pandoc" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="author" content="Yadong Liu1, Kwang Soo Kim1,2, Robert M. Beresford3, and David Fleisher4" />
+    <meta name="date" content="2019-08-30" />
+    <title>Development of a generic composite measure of association between geospatial variables</title>
+
+        <link href="poster_files/paged/css/poster-jacobs.css" rel="stylesheet" />
+    
+    
+    
+
+        <link rel="stylesheet" href="css.css" type="text/css" />
+    
+  </head>
+  <body>
+
+
+<div class="poster-title">
+  <h1 class="title">Development of a generic composite measure of association between geospatial variables</h1>
+  <h2 class="author">Yadong Liu<sup>1</sup>, Kwang Soo Kim<sup>1,2</sup>, Robert M. Beresford<sup>3</sup>, and David Fleisher<sup>4</sup></h2>
+  <h2 class="institute">1. Department of Plant Science, Seoul National University; 2. Research Institute of Agriculture and Life Sciences, Seoul National University; 3. Department and University Three; 4. Department and University Four</h2>
+</div>
+
+<div id="objectives" class="section level1 block">
+<h1>Objectives</h1>
+<p>Develop a generic composite measure of association between geospatial variables which:</p>
+<ul>
+<li>can compare the central tendencies, variabilities, and capture the correlation coefficient</li>
+<li>is available for variable both positively and negative correlated</li>
+<li>can detect the relative association between variabels with different content</li>
+<li>can be applied to both spatial and temporal domain</li>
+</ul>
+</div>
+<div id="introduction" class="section level1">
+<h1>Introduction</h1>
+<p>A single metric can not fully characterize the fit between the predicted and observed data. Some composite measures have been developed and applied, such as the Structural SIMilarity (SSIM) <span class="citation">(Wang et al. 2004)</span> and Composite similarity measure based on Means, Standard deviations and Correlation coefficient (CMSC) <span class="citation">(Palubinskas 2017)</span>. But those measures have limitations in wild applications:</p>
+<ol style="list-style-type: decimal">
+<li>SSIM requires both variabels have the same sign, which is resolved by its variant CMSC.</li>
+<li>CMSC uses the squared Euclidean distance which leads to a nonlinear responce curve.</li>
+<li>They have poor performances for variables that negatively correlated.</li>
+<li>Can not compare variables with different scales.</li>
+</ol>
+</div>
+<div id="generic-composite-similarity-measure-gcsm" class="section level1">
+<h1>Generic composite similarity measure (GCSM)</h1>
+<p>The GCSM was proposed based on CMSC.</p>
+<ul>
+<li>The Euclidean distance was used to make <span class="math inline">\(s_1\)</span> and <span class="math inline">\(s_2\)</span> linear functions.</li>
+<li>The distance for <span class="math inline">\(s_1\)</span> was differently defined for positive and negative correlation.</li>
+<li>Apply fuzzy sets to transform variables to the same scale 0-1.</li>
+</ul>
+<p><span class="math display">\[GCSM(x, y)=s_{1}(x, y) \cdot s_{2}(x, y) \cdot s_{3}(x, y)\]</span></p>
+</div>
+<div id="mathematical-section" class="section level1">
+<h1>Mathematical Section</h1>
+<p><span class="math display">\[s_{1}=\left\{\begin{array}{ll}{1-\frac{\left|\mu_{x}-\mu_{y}\right|}{max-min}} &amp; \text{ if }{s_{3}&gt;0}; \\ {1-\frac{\left|min+max-\mu_{x}-\mu_{y}\right|}{max-min}} &amp; \text{ if }{s_{3}&lt;0}.\end{array}\right.\]</span></p>
+<p><span class="math display">\[s_{2}=1-\frac{\left|\sigma_{x}-\sigma_{y}\right|}{(max-min)/2}\]</span></p>
+<p><span class="math display">\[s_{3}=\left\{\begin{array}{ll}{1} &amp; \text{ if } {\sigma_{x}=\sigma_{y}=0}; \\ 
+{0} &amp; \text{ if } {\sigma_{x}=0 \text { or } \sigma_{y}=0}; \\ 
+{\frac{\sigma_{x y}}{\sigma_{x} \sigma_{y}}} &amp; {\text { otherwise. }}\end{array}\right.\]</span></p>
+</div>
+<div id="examples" class="section level1">
+<h1>Examples</h1>
+<div class="figure"><span id="fig:unnamed-chunk-1"></span>
+<img src="poster_files/figure-html/unnamed-chunk-1-1.png" alt="Some examples showing the calculation of GCSM" width="25%" /><img src="poster_files/figure-html/unnamed-chunk-1-2.png" alt="Some examples showing the calculation of GCSM" width="25%" /><img src="poster_files/figure-html/unnamed-chunk-1-3.png" alt="Some examples showing the calculation of GCSM" width="25%" /><img src="poster_files/figure-html/unnamed-chunk-1-4.png" alt="Some examples showing the calculation of GCSM" width="25%" />
+<p class="caption">
+Figure 1: Some examples showing the calculation of GCSM
+</p>
+</div>
+</div>
+<div id="usage-example-1-spatial-cnsistency-between-two-estimates-of-gpp" class="section level1">
+<h1>Usage example 1: Spatial cnsistency between two estimates of GPP</h1>
+<div class="figure"><span id="fig:unnamed-chunk-2"></span>
+<img src="smpimod-1.png" alt="Spatial similarity between average annual MPI and MOD, (a) GCSM which is the multiplication of (b) s~1~, (c) s~2~, and (d) s~3~" width="1050" />
+<p class="caption">
+Figure 2: Spatial similarity between average annual MPI and MOD, (a) GCSM which is the multiplication of (b) s<sub>1</sub>, (c) s<sub>2</sub>, and (d) s<sub>3</sub>
+</p>
+</div>
+</div>
+<div id="usage-example-2-association-between-gpp-and-rainfall" class="section level1">
+<h1>Usage example 2: Association between GPP and rainfall</h1>
+<div class="figure"><span id="fig:unnamed-chunk-3"></span>
+<img src="tmpipre-1.png" alt="Temporal association between annual GPP and precipitation, (a) GCSM which is the multiplication of (b) s~1~, (c) s~2~, and (d) s~3~." width="1050" />
+<p class="caption">
+Figure 3: Temporal association between annual GPP and precipitation, (a) GCSM which is the multiplication of (b) s<sub>1</sub>, (c) s<sub>2</sub>, and (d) s<sub>3</sub>.
+</p>
+</div>
+</div>
+<div id="sensitivity-test" class="section level1">
+<h1>Sensitivity test</h1>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-4"></span>
+<img src="poster_files/figure-html/unnamed-chunk-4-1.png" alt="Similarity measures of SSIM, CMSC, and GCSM between MPI and MPI distorted by Gaussian noise" width="100%" />
+<p class="caption">
+Figure 4: Similarity measures of SSIM, CMSC, and GCSM between MPI and MPI distorted by Gaussian noise
+</p>
+</div>
+</div>
+<div id="conclusion" class="section level1">
+<h1>Conclusion</h1>
+<p>GCSM showed improved characteristics compared with SSIM and CMSC. It had a higher sensitivity and could measure the negative dependence between variables. With the framework of fuzzy sets, the relative association could also be obtained between variables with different scales. Case studies showed the GCSM can be applied to both spatial and temporal domains of spatiotemporal ecological variables.</p>
+</div>
+<div id="references" class="section level1 unnumbered">
+<h1>References</h1>
+<div id="refs" class="references">
+<div id="ref-palubinskas2017">
+<p>Palubinskas, Gintautas. 2017. “Image Similarity/Distance Measures: What Is Really Behind MSE and SSIM?” <em>International Journal of Image and Data Fusion</em> 8 (1). Informa UK Limited: 32–53. <a href="https://doi.org/10.1080/19479832.2016.1273259">https://doi.org/10.1080/19479832.2016.1273259</a>.</p>
+</div>
+<div id="ref-wang2004">
+<p>Wang, Z., A.C. Bovik, H.R. Sheikh, and E.P. Simoncelli. 2004. “Image Quality Assessment: From Error Visibility to Structural Similarity.” <em>IEEE Transactions on Image Processing</em> 13 (4). Institute of Electrical; Electronics Engineers (IEEE): 600–612. <a href="https://doi.org/10.1109/tip.2003.819861">https://doi.org/10.1109/tip.2003.819861</a>.</p>
+</div>
+</div>
+</div>
+
+<script type="text/javascript">
+(function() {
+  // add appropriate classes to h1 and its parent div
+  var i, d, p, s, el, els = document.getElementsByTagName('h1');
+  for (i = 0; i < els.length; i++) {
+    el = els[i]; p = el.parentNode;
+    if (p.className === 'section level1') {
+      el.append(document.createElement('hr'));
+    }
+    p.className += ' section-' + (i + 1);
+    s = p.dataset['color'];
+    if (s) el.style.color = s;
+    s = p.dataset['backgroundColor'];
+    if (s) p.style.backgroundColor = s;
+    s = p.dataset['borderColor'];
+    if (s) {
+      el.style.backgroundColor = s;
+      p.style.borderColor = s;
+    }
+    d = document.createElement('div');
+    d.className = 'content';
+    while (el.nextSibling) {
+      d.append(el.nextSibling);
+    }
+    p.append(d);
+  }
+})();
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = `https://mathjax.rstudio.com/latest/MathJax.js` + "?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+
+  </body>
+</html>

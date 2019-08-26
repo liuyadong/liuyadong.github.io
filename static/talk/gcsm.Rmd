@@ -62,7 +62,7 @@ Natively defined with the moving window.
 
 ```{r}
 eqns <- read_csv('equation.csv')
-eqns %>% knitr::kable(format='html')
+eqns %>% knitr::kable(format='html',escape=FALSE)
 ```
 
 

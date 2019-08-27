@@ -1,13 +1,13 @@
 @page {
-  size: 46.8in 33.1in;
+  size: 90cm 110cm;
   margin: 0;
 }
 * {
   box-sizing: border-box;
 }
 html {
-  width: 46.8in;
-  height: 33.09in;
+  width: 90cm;
+  height: 110cm;
 }
 body {
   margin: 0;
@@ -23,15 +23,15 @@ body {
   display: grid;
   grid-template-areas:
     'S1 S1 S1 S1'
-    'S2 S4 S5 S9'
-    'S2 S4 S5 S9'
-    'S2 S6 S6 S9'
-    'S2 S6 S6 S9'
-    'S3 S6 S6 S10'
-    'S3 S7 S8 S10'
-    'S3 S7 S8 S11'
-    'S3 S7 S8 S11'
-    'S3 S7 S8 S11';
+    'S2 S4 S5 S7'
+    'S2 S4 S5 S7'
+    'S2 S4 S5 S7'
+    'S3 S6 S6 S7'
+    'S3 S6 S6 S8'
+    'S3 S6 S6 S9'
+    'S3 S6 S6 S9'
+    'S3 S6 S6 S9'
+    'S3 S6 S6 S9';
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(10, 1fr);
 }

@@ -6,16 +6,16 @@
 
 {{ .Content }}
 
-{{if not .IsHome }}
 <ul>
   {{ $pages := .Pages }}
+  {{if not .IsHome }}
   {{ range (where $pages "Section" "!=" "") }}
   <li>
     <span class="date">{{ .Date.Format "2006/01/02" }}</span>
-    <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+    <a href="{{ .URL }}">{{ .Title }}</a>
   </li>
   {{ end }}
-</ul>
 {{ end }}
+</ul>
 
 {{ partial "footer.html" . }}

@@ -1,5 +1,5 @@
 ---
-title: Application of A Fuzzy Set to the Structural Similarity (SSIM) Index For Assessment of Spatial Association Between Ecological Variables
+title: "Application of A Fuzzy Set to the Structural Similarity (SSIM) Index For Assessment of Spatial Association Between Ecological Variables"
 author: "Yadong Liu^1^, Kwang Soo Kim^1,2^, Cheryl H. Porter^3^"
 institute: "1. Department of Plant Science, Seoul National University; 2. Research Institute of Agriculture and Life Sciences, Seoul National University; 3. Department of Agricultural and Biological Engineering, University of Florida"
 output:

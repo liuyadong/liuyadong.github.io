@@ -44,6 +44,8 @@ The SSIM index ranges from -1 to 1. It gets maximum of 1 if and only if $x=y$.
 
 # Fuzzy sets
 
+The type-1 fuzzy set was determined as:
+
 $$\mu_{A}(x)=\left\{\begin{array}{ll}{0} & {\text { if } x<x_{\min }} \\ {1} & {\text { if } x>x_{\max }} \\ {\frac{x-x_{\min }}{x_{\max }-x_{\min }}} & {\text { otherwise }}\end{array}\right.$$
 
 ```{r, out.width='100%',fig.cap='The type-1 membership function for temperature'}

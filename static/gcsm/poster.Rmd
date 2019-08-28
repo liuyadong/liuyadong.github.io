@@ -18,15 +18,15 @@ library(latex2exp)
 ```
 
 
-# Objective {.block}
-
-The objective of this study was to develop an approach for assessing spatial association by applying fuzzy sets [@mendel2017] to the calculation of the SSIM index. The type-1 fuzzy sets were used to transform the variables to the scale of 0-1. The uncertainty of the ecological data was represented with the interval type-2 fuzzy sets. These approaches would facilitate the evaluation of the spatial association between the ecological variables.
-
 # Introduction
 
-Map comparison is often needed for evaluating spatial models in ecological studies. The SSIM index [@wang2004] originally developed for image quality assessment have been suggested as a diagnostic tool for spatial modeling and analysis [@robertson2014; @jones2016b]. It has advantages to evaluate the association compared to single measures because it can measure the agreement between variables in terms of their central tendencies, variabilities, and the correlation.
+Map comparison is often needed for evaluating spatial models in ecological studies. The SSIM index [@wang2004] originally developed for image quality assessment have been suggested as a diagnostic tool for spatial modeling and analysis [@robertson2014]. It has advantages to evaluate the association compared to single measures because it can measure the agreement between variables in terms of their central tendencies, variabilities, and the correlation.
 
 However, the SSIM index requires the variables being compared would have the same sign and the same range of values. It is not unusual for ecological variables having different signs and considerable difference in the ranges, e.g. temperature and solar radiation. Thus, some transformation of the data is needed to apply the SSIM index for association assessment.
+
+# Objective {.block}
+
+The objective of this study was to develop an approach for assessing spatial association by applying fuzzy sets to the calculation of the SSIM index. The type-1 fuzzy sets were used to transform the variables to the scale of 0-1. The uncertainty of the ecological data was represented with the interval type-2 fuzzy sets. These approaches would facilitate the evaluation of the spatial association between the ecological variables.
 
 # SSIM index
 
@@ -69,14 +69,14 @@ plottype1(ftavg,'Temperature (°C)','Membership grade')
 
 # Usage example
 
-```{r, out.width='80%',fig.cap='The map of (a) Fuzzy SSIM between solar radiation and temperature data, which is the product of (b) s~1~ and (c) s~2~. Solar radiation and temperature data are obtained from the WorldClim dataset.'}
+```{r, out.width='100%',fig.cap='The map of (a) Fuzzy SSIM between solar radiation and temperature data, which is the product of (b) s~1~ and (c) s~2~. Solar radiation and temperature data are obtained from the WorldClim dataset.'}
 knitr::include_graphics('fssimpy-1.png')
 ```
 
 
 # Sensitivity test
 
-```{r,fig.show='hold',out.width='100%',fig.cap='Similarity measures of Fuzzy SSIM, Kendall\'s tau, and Spearman\'s rho between the reference and distortion adding Gaussian noise'}
+```{r,fig.show='hold',out.width='95%',fig.cap='Similarity measures of Fuzzy SSIM, Kendall\'s tau, and Spearman\'s rho between the reference and distortion adding Gaussian noise'}
 sens_std <- read_csv('sens_std_ssim.csv')
 sens_frac <- read_csv('sens_frac_ssim.csv')
 plotsens <- function(df,x,xlab){
@@ -114,3 +114,10 @@ sens_std %>% select(-gwrsq) %>%
 The SSIM index between fuzzified values would be useful to evaluate spatial relationships between two ecological variables. The fuzzy sets could eliminate the scale inequality while maintaining the relative association, and make it feasible to determine the SSIM index between two maps of ecological variables.
 
 # References
+
+<div id="refs"></div>
+
+# Acknowledgements {data-color=red}
+
+This study was funded by the Korea Ministry of Environment (MOE) as "Climate Change Correspondence Program" (Project Number: 2014001310008)
+

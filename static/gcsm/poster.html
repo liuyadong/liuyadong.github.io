@@ -27,14 +27,14 @@
   <h2 class="institute">1. Department of Plant Science, Seoul National University; 2. Research Institute of Agriculture and Life Sciences, Seoul National University; 3. Department of Agricultural and Biological Engineering, University of Florida</h2>
 </div>
 
-<div id="objective" class="section level1 block">
-<h1>Objective</h1>
-<p>The objective of this study was to develop an approach for assessing spatial association by applying fuzzy sets <span class="citation">(Mendel 2017)</span> to the calculation of the SSIM index. The type-1 fuzzy sets were used to transform the variables to the scale of 0-1. The uncertainty of the ecological data was represented with the interval type-2 fuzzy sets. These approaches would facilitate the evaluation of the spatial association between the ecological variables.</p>
-</div>
 <div id="introduction" class="section level1">
 <h1>Introduction</h1>
-<p>Map comparison is often needed for evaluating spatial models in ecological studies. The SSIM index <span class="citation">(Wang et al. 2004)</span> originally developed for image quality assessment have been suggested as a diagnostic tool for spatial modeling and analysis <span class="citation">(Robertson et al. 2014; Jones et al. 2016)</span>. It has advantages to evaluate the association compared to single measures because it can measure the agreement between variables in terms of their central tendencies, variabilities, and the correlation.</p>
+<p>Map comparison is often needed for evaluating spatial models in ecological studies. The SSIM index <span class="citation">(Wang et al. 2004)</span> originally developed for image quality assessment have been suggested as a diagnostic tool for spatial modeling and analysis <span class="citation">(Robertson et al. 2014)</span>. It has advantages to evaluate the association compared to single measures because it can measure the agreement between variables in terms of their central tendencies, variabilities, and the correlation.</p>
 <p>However, the SSIM index requires the variables being compared would have the same sign and the same range of values. It is not unusual for ecological variables having different signs and considerable difference in the ranges, e.g. temperature and solar radiation. Thus, some transformation of the data is needed to apply the SSIM index for association assessment.</p>
+</div>
+<div id="objective" class="section level1 block">
+<h1>Objective</h1>
+<p>The objective of this study was to develop an approach for assessing spatial association by applying fuzzy sets to the calculation of the SSIM index. The type-1 fuzzy sets were used to transform the variables to the scale of 0-1. The uncertainty of the ecological data was represented with the interval type-2 fuzzy sets. These approaches would facilitate the evaluation of the spatial association between the ecological variables.</p>
 </div>
 <div id="ssim-index" class="section level1">
 <h1>SSIM index</h1>
@@ -58,7 +58,7 @@ Figure 1: The type-1 membership function for temperature
 <div id="usage-example" class="section level1">
 <h1>Usage example</h1>
 <div class="figure"><span id="fig:unnamed-chunk-2"></span>
-<img src="fssimpy-1.png" alt="The map of (a) Fuzzy SSIM between solar radiation and temperature data, which is the product of (b) s~1~ and (c) s~2~. Solar radiation and temperature data are obtained from the WorldClim dataset." width="80%" />
+<img src="fssimpy-1.png" alt="The map of (a) Fuzzy SSIM between solar radiation and temperature data, which is the product of (b) s~1~ and (c) s~2~. Solar radiation and temperature data are obtained from the WorldClim dataset." width="100%" />
 <p class="caption">
 Figure 2: The map of (a) Fuzzy SSIM between solar radiation and temperature data, which is the product of (b) s<sub>1</sub> and (c) s<sub>2</sub>. Solar radiation and temperature data are obtained from the WorldClim dataset.
 </p>
@@ -67,7 +67,7 @@ Figure 2: The map of (a) Fuzzy SSIM between solar radiation and temperature data
 <div id="sensitivity-test" class="section level1">
 <h1>Sensitivity test</h1>
 <div class="figure"><span id="fig:unnamed-chunk-3"></span>
-<img src="poster_files/figure-html/unnamed-chunk-3-1.png" alt="Similarity measures of Fuzzy SSIM, Kendall's tau, and Spearman's rho between the reference and distortion adding Gaussian noise" width="100%" /><img src="poster_files/figure-html/unnamed-chunk-3-2.png" alt="Similarity measures of Fuzzy SSIM, Kendall's tau, and Spearman's rho between the reference and distortion adding Gaussian noise" width="100%" />
+<img src="poster_files/figure-html/unnamed-chunk-3-1.png" alt="Similarity measures of Fuzzy SSIM, Kendall's tau, and Spearman's rho between the reference and distortion adding Gaussian noise" width="95%" /><img src="poster_files/figure-html/unnamed-chunk-3-2.png" alt="Similarity measures of Fuzzy SSIM, Kendall's tau, and Spearman's rho between the reference and distortion adding Gaussian noise" width="95%" />
 <p class="caption">
 Figure 3: Similarity measures of Fuzzy SSIM, Kendall’s tau, and Spearman’s rho between the reference and distortion adding Gaussian noise
 </p>
@@ -77,15 +77,9 @@ Figure 3: Similarity measures of Fuzzy SSIM, Kendall’s tau, and Spearman’s r
 <h1>Conclusion</h1>
 <p>The SSIM index between fuzzified values would be useful to evaluate spatial relationships between two ecological variables. The fuzzy sets could eliminate the scale inequality while maintaining the relative association, and make it feasible to determine the SSIM index between two maps of ecological variables.</p>
 </div>
-<div id="references" class="section level1 unnumbered">
+<div id="references" class="section level1">
 <h1>References</h1>
-<div id="refs" class="references">
-<div id="ref-jones2016b">
-<p>Jones, Esther L., Luke Rendell, Enrico Pirotta, and Jed A. Long. 2016. “Novel Application of a Quantitative Spatial Comparison Tool to Species Distribution Data.” <em>Ecological Indicators</em> 70 (November). Elsevier BV: 67–76. <a href="https://doi.org/10.1016/j.ecolind.2016.05.051">https://doi.org/10.1016/j.ecolind.2016.05.051</a>.</p>
-</div>
-<div id="ref-mendel2017">
-<p>Mendel, Jerry M. 2017. <em>Uncertain Rule-Based Fuzzy Systems</em>. 2nd ed. Springer International Publishing. <a href="https://doi.org/10.1007/978-3-319-51370-6">https://doi.org/10.1007/978-3-319-51370-6</a>.</p>
-</div>
+<div id="refs">
 <div id="ref-robertson2014">
 <p>Robertson, Colin, Jed A. Long, Farouk S. Nathoo, Trisalyn A. Nelson, and Cameron C. F. Plouffe. 2014. “Assessing Quality of Spatial Models Using the Structural Similarity Index and Posterior Predictive Checks.” <em>Geographical Analysis</em> 46 (1). Wiley-Blackwell: 53–74. <a href="https://doi.org/10.1111/gean.12028">https://doi.org/10.1111/gean.12028</a>.</p>
 </div>
@@ -93,6 +87,10 @@ Figure 3: Similarity measures of Fuzzy SSIM, Kendall’s tau, and Spearman’s r
 <p>Wang, Z., A.C. Bovik, H.R. Sheikh, and E.P. Simoncelli. 2004. “Image Quality Assessment: From Error Visibility to Structural Similarity.” <em>IEEE Transactions on Image Processing</em> 13 (4). Institute of Electrical; Electronics Engineers (IEEE): 600–612. <a href="https://doi.org/10.1109/tip.2003.819861">https://doi.org/10.1109/tip.2003.819861</a>.</p>
 </div>
 </div>
+</div>
+<div id="acknowledgements" class="section level1" data-color="red">
+<h1>Acknowledgements</h1>
+<p>This study was funded by the Korea Ministry of Environment (MOE) as “Climate Change Correspondence Program” (Project Number: 2014001310008)</p>
 </div>
 
 <script type="text/javascript">

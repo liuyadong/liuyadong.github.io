@@ -1,9 +1,0 @@
-Term,SSIM,CMSC
-\(\mu_{x}\),\(\sum_{i=1}^{N} w_{i} x_{i}\),\(\frac{1}{N} \sum_{i=1}^{N} x_{i}\)
-\(\mu_{y}\),\(\sum_{i=1}^{N} w_{i} y_{i}\),\(\frac{1}{N} \sum_{i=1}^{N} y_{i}\)
-\(\sigma_{x}^{2}\),\(\sum_{i=1}^{N} w_{i}\left(x_{i}-\mu_{x}\right)^{2}\),\(\frac{1}{N-1} \sum_{i=1}^{N}\left(x_{i}-\mu_{x}\right)^{2}\)
-\(\sigma_{y}^{2}\),\(\sum_{i=1}^{N} w_{i}\left(y_{i}-\mu_{y}\right)^{2}\),\(\frac{1}{N-1} \sum_{i=1}^{N}\left(y_{i}-\mu_{y}\right)^{2}\)
-\(\sigma_{x y}\),\(\sum_{i=1}^{N} w_{i}\left(x_{i}-\mu_{x}\right)\left(y_{i}-\mu_{y}\right)\),\(\frac{1}{N-1} \sum_{i=1}^{N}\left(x_{i}-\mu_{x}\right)\left(y_{i}-\mu_{y}\right)\)
-\(s_{1}\),\(1-\frac{\left(\mu_{x}-\mu_{y}\right)^{2}}{\mu_{x}^{2}+\mu_{y}^{2}+c_{1}}\),\(1-\left(\frac{\mu_{x}-\mu_{y}}{max-min}\right)^{2}\)
-\(s_{2}\),\(1-\frac{\left(\sigma_{x}-\sigma_{y}\right)^{2}}{\sigma_{x}^{2}+\sigma_{y}^{2}+c_{2}}\),\(1-\left[\frac{\sigma_{x}-\sigma_{y}}{\left(max-min\right)/2}\right]^{2}\)
-\(s_{3}\),\(\frac{\sigma_{x y}+c_{3}}{\sigma_{x} \sigma_{y}+c_{3}}\),\(\frac{\sigma_{x y}}{\sigma_{x} \sigma_{y}}\)

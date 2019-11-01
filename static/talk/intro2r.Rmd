@@ -1,0 +1,630 @@
+---
+title: Introduction to R for Data Analysis
+author: _Yadong Liu_
+date: "November 2019"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+library(tidyverse)
+```
+
+background-image: url(https://d33wubrfki0l68.cloudfront.net/86cc45e87bb755a3bcecce462a6524e68d13a466/67469/images/r4ds/data_science_pipeline.png)
+background-size: 80%
+
+# Big Picture
+
+---
+background-image: url(https://www.r-project.org/Rlogo.png)
+background-size: 100px
+background-position: 30% 50%
+
+class: center, middle
+
+# you ready?
+
+---
+class: inverse, center, middle
+
+# 1. Getting Started
+
+---
+background-image: url(https://revolution-computing.typepad.com/.a/6a010534b1db25970b01b8d2594d25970c-800wi)
+background-position: 95% 50%
+background-size: 350px
+
+## About [R](https://www.r-project.org)
+
+A language and environment for statistical computing and graphics
+
+Created by statisticians for statisticians
+
+**Core/Base + Addon**
+
+- [CRAN](https://cloud.r-project.org) (>15000) `install.packages()`
+- [Bioconductor](https://www.bioconductor.org) `remotes::install_bioc()`
+- [Github](https://github.com) `remotes::install_github()`
+
+## About [RStudio](https://rstudio.com)
+
+IDE + Packages + Community + Education
+
+---
+background-image: url(https://avatars1.githubusercontent.com/u/22032646?s=200&v=4)
+background-size: 100px
+background-position: 90% 6%
+
+## About [Tidyverse](https://tidyverse.org)
+
+A collection of packages designed for data science
+  - ggplot2, readr, tibble, tidyr, dplyr, stringr, lubridate, purrr, ...
+
+```
+install.packages('tidyverse')
+library(tidyverse)
+```
+
+## About [Hadley Wickham](http://hadley.nz)
+
+Chief Scientist at RStudio
+
+Winner of 2019 [COPSS](https://community.amstat.org/copss/home) Presidents' Award
+
+>For influential work in statistical computing, visualization, graphics, and data analysis; for developing and implementing an impressively comprehensive computational infrastructure for data analysis through R software; for making statistical thinking and computing accessible to large audience; and for enhancing an appreciation for the important role of statistics among data scientists.
+
+---
+background-image: url(https://china-r.org/img/China-R-Logo-trans.png)
+background-position: 50% 60%
+
+## About [Yihui Xie|谢益辉](https://yihui.name)
+
+Founder of [Capital of Statistics|统计之都](https://cosx.org)
+
+Initiator of [China-R Conference|中国R语言会议](https://china-r.org)
+
+---
+## Data type
+
+logical, integer, double, character, factor, Date, Date-time
+
+**vector & list**
+
+.pull-left[
+```r
+lgl_var <- c(TRUE, FALSE)
+int_var <- c(1L, 6L, 10L)
+dbl_var <- c(1, 2.5, 4.5)
+chr_var <- c("these are", "some strings")
+```
+```{r, echo = FALSE}
+knitr::include_graphics("https://d33wubrfki0l68.cloudfront.net/8a3d360c80da1186b1373a0ff0ddf7803b96e20d/254c6/diagrams/vectors/atomic.png")
+```
+]
+
+.pull-right[
+```r
+l1 <- list(
+  1:3, 
+  "a", 
+  c(TRUE, FALSE, TRUE), 
+  c(2.3, 5.9)
+  )
+```
+![](https://d33wubrfki0l68.cloudfront.net/9628eed602df6fd55d9bced4fba0a5a85d93db8a/36c16/diagrams/vectors/list.png)
+]
+
+---
+** matrix & data frame**
+
+```{r, results='hold'}
+df1 <- data.frame(x = 1:3 * 10)
+df1$y <- matrix(1:9, nrow = 3)
+df1$z <- data.frame(a = 3:1, b = letters[1:3], stringsAsFactors = FALSE)
+str(df1)
+```
+
+```{r, echo=FALSE, fig.align='center', out.width='60%'}
+knitr::include_graphics("https://d33wubrfki0l68.cloudfront.net/38c47352b8062a6d59318b3bbd1f86b062419322/7780c/diagrams/vectors/data-frame-matrix.png")
+```
+
+---
+background-image: url(https://bookdown.org/wangminjie/R4DS/images/data_struction1.png)
+background-size: contain
+
+---
+**factor**
+
+```r
+rx <- factor(c(1, 2, 3, 1, 1, 3, 2, 3, 3), levels = 1:3,
+             labels = c("g1", "g2", "g3"))
+attributes(x)
+typeof(x)
+table(x)
+```
+
+**Date**
+
+```r
+today <- Sys.Date()
+typeof(today)
+attributes(today)
+date <- as.Date("2019-10-31")
+```
+
+**missing values**
+
+```r
+NA
+NaN
+NULL
+is.na()
+is.nan()
+is.null()
+```
+
+---
+## Subsetting
+
+.pull-left[
+```{r, results='hold'}
+# atomic vector #<<
+x <- 1:5
+length(x)
+x[1]
+x[-1]
+x[1:3] <- 3:1
+x[c(TRUE,TRUE,TRUE,FALSE,FALSE)]
+names(x)
+names(x) <- LETTERS[1:length(x)]
+names(x)
+x['E']
+x[c('A', 'B', 'C')]
+```
+]
+
+.pull-right[
+```{r, results='hold'}
+# list #<<
+l <- list('one' = c('a', 'b', 'c'),
+          'two' = 1:5,
+          'three' = c(TRUE, FALSE)
+          )
+l[1]
+l[[1]]
+l[[1]][1]
+l[['one']]
+l$one
+```
+]
+
+---
+background-image: url(https://pbs.twimg.com/media/CO2_qPVWsAAErbv?format=png&name=large)
+background-size: contain
+
+---
+background-image: url(https://d33wubrfki0l68.cloudfront.net/2f3f752cae25018554d484464f117e600ff365a2/37627/diagrams/lists-subsetting.png)
+background-size: 500px
+
+```r
+a <- list(a = 1:3, b = "a string", c = pi, d = list(-1, -5))
+```
+
+---
+.pull-left[
+```{r}
+(m <- matrix(1:9, nrow = 3))
+m[1:2, 2:3]
+m[1, ]
+m[1, , drop = FALSE]
+```
+]
+
+.pull-right[
+```r
+df <- data.frame(x = 1:4, y = 4:1, z = letters[1:4],
+                 stringsAsFactors = FALSE)
+df
+df[c("x", "z")]
+df[1:2]
+df[1:2, ]
+```
+]
+
+---
+## Function
+
+population standard deviation
+
+$$\sqrt{\frac{1}{n}\sum_{i=1}^{n}{(x-\bar{x})^2}}$$
+
+```{r}
+x <- rnorm(10)
+sqrt(mean((x - mean(x))^2))
+# avoid repeat yourself
+sd_pop <- function(x) {
+  return(sqrt(mean((x - mean(x))^2)))
+}
+sd_pop(x)
+```
+
+---
+**How to view the source code?**
+
+1. just type function name e.g. `sd`
+
+1. if is S3 generic function, e.g. `mean`, use methods() to get the specific method like `mean.default`, or `getAnywhere()`
+
+1. if S4, `getMethod()` may be helpful
+
+1. base R source in [github](https://github.com/wch/r-source)
+
+---
+**Pipe %>%**
+
+```r
+* # low readability
+leave_house(get_dressed(get_out_of_bed(wake_up(me))))
+
+* # intermediate variables
+me1 <- wake_up(me)
+me2 <- get_out_of_bed(me1)
+me3 <- get_dressed(me2)
+leave_house(me3)
+
+* # nice
+me %>% 
+  wake_up() %>% 
+  get_out_of_bed() %>% 
+  get_dressed() %>% 
+  leave_house()
+
+```
+
+**Base R Cheatsheet**
+
+RStudio: Help > Cheatsheets
+
+[http://github.com/rstudio/cheatsheets/raw/master/base-r.pdf](http://github.com/rstudio/cheatsheets/raw/master/base-r.pdf)
+
+---
+class: inverse, center, middle
+
+# 2. Data I/O
+readr, readxl, DBI, vroom, data.table
+---
+**csv files**
+
+- base R: `read.csv(), write.csv()`
+- [readr](https://readr.tidyverse.org): `read_csv(), write_csv()`
+- vroom: `vroom(), vroom_write()`
+- data.table: `fread(), fwrite()`
+
+**excel files**
+
+`readxl::read_excel()`
+
+**database**
+
+`DBI::dbConnect()`
+
+**Data Import Cheatsheet**
+
+[https://rawgit.com/rstudio/cheatsheets/master/data-import.pdf](https://rawgit.com/rstudio/cheatsheets/master/data-import.pdf)
+
+---
+class: inverse, center, middle
+
+# 3. Data Visualisation
+
+ggplot2
+
+---
+## diamonds
+
+```{r}
+head(diamonds)
+```
+
+---
+## Base R
+
+```{r, fig.show='hold', out.width='33%'}
+hist(diamonds$price)
+plot(density(diamonds$price))
+boxplot(price~cut, diamonds)
+```
+
+---
+## why [ggplot2](https://ggplot2.tidyverse.org)
+
+> “R的基础绘图系统基本就是一个纸笔模型，即一块画布摆在面前，可以在这里画几个点，在那里画几条线，指哪儿画哪儿，但这不是让数据分析者说话的方式，数据分析者不会说这条线用#FE09BE颜色，那个点用三角形状，他们只会说，把图中的线用数据中的职业类型变量上色，或者图中点的形状对应性别变量，这是数据分析者的说话方式，而ggplot2正是以这种方式来表达的。”  ---谢益辉
+
+---
+
+```{r, fig.show='hold', out.width='33%'}
+ggplot(diamonds) + aes(price) + 
+  geom_histogram()
+
+ggplot(diamonds) + aes(price) +
+  stat_density(geom = 'line')
+
+ggplot(diamonds) + aes(cut, price) +
+  geom_boxplot()
+```
+
+---
+**Template**
+
+```r
+ggplot(data = xxx, mapping = aes()) + 
+  geom_xxx() or stat_xxx() + # one or more layers
+  scale_xxx() + 
+  coord_xxx() + 
+  facet_xxx() + 
+  theme_xxx()
+```
+
+```{r, message=F,fig.width=5, fig.asp=0.4, warning=FALSE, out.width='90%'}
+ggplot(diamonds) + aes(price) + 
+  geom_histogram(aes(y= ..density..)) + 
+  geom_density(color = 'blue')
+```
+
+---
+**Geometric objects**
+
+point, line, bar, box, text, ...
+
+```{r, fig.show='hold', out.width='50%'}
+ggplot(diamonds) + aes(carat, price) + 
+  geom_point()
+
+ggplot(diamonds) + aes(carat, price) + 
+  geom_hex()
+```
+
+---
+background-image: url(https://d33wubrfki0l68.cloudfront.net/70a3b18a1128c785d8676a48c005ee9b6a23cc00/7283c/images/visualization-stat-bar.png)
+background-size: contain
+background-position: 50% 90%
+
+**Aesthetic mapping**
+
+shape, size, color, linetype, fill, font size, ...
+
+ggplot2 > vignettes
+
+```r
+ggplot(diamonds) + aes(cut) +
+  geom_bar() + 
+  theme_bw()
+```
+
+---
+```{r, fig.show='hold', out.width='33%'}
+ggplot(diamonds) + aes(cut, fill = cut) +
+  geom_bar()
+
+ggplot(diamonds) + aes(cut, fill = clarity) +
+  geom_bar()
+
+ggplot(diamonds) + aes(cut, fill = clarity) +
+  geom_bar(position = 'dodge')
+```
+
+---
+**facet**
+
+```{r}
+ggplot(diamonds) + aes(price) +
+  geom_density() + 
+  facet_grid(cut~.)
+```
+
+---
+**plotly**
+
+```r
+p <- diamonds %>% 
+  sample_n(500) %>% 
+  ggplot() + aes(carat, price) +
+  geom_point() + 
+  facet_grid(.~cut)
+plotly::ggplotly(p)
+```
+
+**ggplot2 Cheatsheet**
+
+[https://github.com/rstudio/cheatsheets/blob/master/data-visualization-2.1.pdf](https://github.com/rstudio/cheatsheets/blob/master/data-visualization-2.1.pdf)
+
+---
+class: inverse, center, middle
+
+# 4. Data Manipulation
+
+tidyr, dplyr
+
+---
+## Tidy Data
+
+> "Tidy datasets are all alike, but every messy dataset is messy in its onw way." --- Hadley Wickham
+
+A dataset is tidy if:
+  1. Each variable is in its own column.
+  
+  1. Each case is in its own row.
+  
+  1. Each value is in its own cell.
+
+---
+background-image: url(https://d33wubrfki0l68.cloudfront.net/6f1ddb544fc5c69a2478e444ab8112fb0eea23f8/91adc/images/tidy-1.png)
+background-size: contain
+
+---
+background-image: url(https://rstudio-education.github.io/tidyverse-cookbook/images/tidyr-gather.png)
+
+**gather**
+
+```r
+table4a %>% 
+  gather(key = "year", value = "cases", 2:3)
+  pivot_longer(2:3, names_to = "year", values_to = "cases")
+```
+
+---
+background-image: url(https://rstudio-education.github.io/tidyverse-cookbook/images/tidyr-spread.png)
+background-position: 50% 60%
+
+**spread**
+
+```r
+table2 %>% 
+  spread(key = type, value = count)
+  pivot_wider(names_from = type, values_from = count)
+```
+
+---
+background-image: url(https://rstudio-education.github.io/tidyverse-cookbook/images/tidyr-separate.png)
+
+**separate**
+
+```r
+table3 %>% 
+  separate(col = rate, into = c("cases", "pop"))
+```
+
+---
+background-image: url(https://rstudio-education.github.io/tidyverse-cookbook/images/tidyr-unite.png)
+
+**unite**
+
+```r
+table5 %>% 
+  unite(col = "year", century, year, sep = "")
+```
+
+---
+**select, filter**
+
+```{r}
+table1 %>% 
+  select(country, year, population)
+
+table1 %>% 
+  filter(year == 2000)
+```
+
+---
+**mutate**
+
+```{r}
+table1 %>% 
+  mutate(rate = cases/population, percent = rate * 100)
+```
+
+---
+**summarise**
+
+```{r}
+table1 %>% 
+  summarise(total_cases = sum(cases), max_rate = max(cases/population))
+
+table1 %>% 
+  group_by(country, year) %>% 
+  summarise_at(vars(cases,population), list(min=min, mean=mean, max=max))
+```
+
+---
+background-image: url(https://raw.githubusercontent.com/rstudio/cheatsheets/master/pngs/thumbnails/data-transformation-cheatsheet-thumbs.png)
+background-size: contain
+
+**Data Transformation Cheatsheet**
+
+[https://github.com/rstudio/cheatsheets/blob/master/data-transformation.pdf](https://github.com/rstudio/cheatsheets/blob/master/data-transformation.pdf)
+
+---
+class: inverse, center, middle
+
+# 5. Data Modeling
+
+---
+### About Max Kuhn
+
+A package [caret](http://topepo.github.io/caret/index.html)
+
+A book [Applied Predictive Modeling](http://appliedpredictivemodeling.com)
+
+### About tidymodels
+
+ - resample
+ - recipes
+ - parnip
+ - yardstick
+ - ...
+
+---
+class: inverse, center, middle
+
+# 6. R Markdown
+
+knitr, rmarkdown, bookdown, blogdown, pagedown
+
+---
+## Markdown?
+
+A lightweight markup language.
+
+Help > Markdown Quick Reference
+
+---
+background-image: url(https://d33wubrfki0l68.cloudfront.net/61d189fd9cdf955058415d3e1b28dd60e1bd7c9b/9791d/images/rmarkdownflow.png)
+
+## Workflow
+
+---
+background-image: url(https://d33wubrfki0l68.cloudfront.net/aee91187a9c6811a802ddc524c3271302893a149/a7003/images/bandthree2.png)
+
+## Rmd 生万物
+
+---
+## More than R
+
+```{r}
+names(knitr::knit_engines$get())
+```
+
+---
+## Demos
+
+```r
+install.packages('rticles')
+install.packages('tinytex')
+tinytex::install_tinytex()
+```
+
+---
+## Suggested readings
+
+1. [R for Data Science](https://r4ds.had.co.nz)
+
+1. [ggplot2: Elegant Graphics for Data Analysis](https://ggplot2-book.org)
+
+1. [现代统计图形](https://bookdown.org/xiangyun/msg/)
+
+1. [R Markdown: The Definitive Guide](https://bookdown.org/yihui/rmarkdown/)
+
+1. [Advanced R](https://adv-r.hadley.nz)
+
+---
+class: center, middle
+
+# _Thanks!_
+
+

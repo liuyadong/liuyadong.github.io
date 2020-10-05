@@ -9,12 +9,15 @@ tags:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, message = FALSE)
+install.packages('tidyverse')
+install.packages('readxl')
+library(tidyverse)
+library(readxl)
 ```
 
 看到这篇文章《[Genomic variation in 3,010 diverse accessions of Asian cultivated rice](https://doi.org/10.1038/s41586-018-0063-9)》才知道 Japonica rice 是籼稻，Indica rice 是粳（geng）稻的意思。电脑里一大堆的 Japonica 或 Indica rice 数据，想当然地以为是与印度或日本有关的品种，实在是不可饶恕！整理了常见禾谷类作物的中、英文名与拉丁文学名如下^[其中Fonio的中文翻译来自[维基百科：谷物](https://zh.wikipedia.org/zh-cn/%E8%B0%B7%E7%89%A9)]：
 
 ```{r name-of-crops}
-library(readxl)
 crops <- read_excel('../../static/data/crops.xlsx')
 knitr::kable(crops, caption='Name of major cereals')
 ```
@@ -22,7 +25,6 @@ knitr::kable(crops, caption='Name of major cereals')
 以及历史产量^[数据来源：[FAO](http://www.fao.org/faostat/en/#data)]：（_手机建议横屏浏览_）
 
 ```{r production, fig.cap='World production of cereals from 1961 to 2016', out.width='100%'}
-library(tidyverse)
 da <- read_csv('../../static/data/FAOSTAT-data-5-7-2018.csv') %>%
   filter(! Item %in% c('Grain, mixed', 'Cereals, nes')) %>%
   mutate(Item=if_else(Item=='Rice, paddy','Rice',Item)) %>%

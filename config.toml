@@ -1,4 +1,4 @@
-baseurl = "/liuyadong.xyz/"
+baseurl = "https://liuyadong.xyz"
 languageCode = "en-us"
 title = "Yadong Liu | 刘亚东"
 theme = "hugo-xmin"

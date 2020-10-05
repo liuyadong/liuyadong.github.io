@@ -24,7 +24,7 @@ publishDir = "docs"
 
 [params]
     description = "Personal website of Yadong Liu; 刘亚东的个人网站"
-    footer = "&copy; [Yadong Liu](/) 2018 - 2019"
+    footer = "&copy; [Yadong Liu](/) 2018 - 2020"
     
 [[params.logo]]
     img = "/img/dong.png"

@@ -8,6 +8,7 @@ preserveTaxonomyNames = true
 footnotereturnlinkcontents = "↩"
 hasCJKLanguage = true
 enableEmoji = true
+publishDir "docs"
 
 [permalinks]
     post = "/post/:year/:month/:day/:slug/"

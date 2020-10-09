@@ -1,10 +1,10 @@
 ---
 title: 远方再好，也只是远方
-date: 2018-04-04
-slug: distance-is-distant
-categories:
-  - 点滴
-tags: []
+author: ''
+date: '2018-04-04'
+tags:
+  - blockquotes
+slug: far-far-away
 ---
 
 晚上听到赵雷的《家乡》，一下子又被击中了。歌词是这样写的：

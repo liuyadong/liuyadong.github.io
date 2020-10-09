@@ -1,39 +1,51 @@
 ---
-title: 世界主要谷物年产量
-date: 2018-04-27
-slug: major-cereals-production
-categories: []
+title: 全球主要谷物年产量：1961-2016
+author: ''
+date: '2018-04-27'
 tags:
-  - 遇见
+  - gt
+  - ggplot2
+  - plotly
+slug: major-cereals-production
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, message = FALSE)
-# install.packages('tidyverse')
-# install.packages('readxl')
-# install.packages('plotly')
 library(tidyverse)
 library(readxl)
+library(gt)
 ```
 
-看到这篇文章《[Genomic variation in 3,010 diverse accessions of Asian cultivated rice](https://doi.org/10.1038/s41586-018-0063-9)》才知道 Japonica rice 是籼稻，Indica rice 是粳（geng）稻的意思。电脑里一大堆的 Japonica 或 Indica rice 数据，想当然地以为只是印度或日本的品种，实在是不可饶恕！所以整理了主要禾谷类作物的中、英文名与拉丁文学名如下^[其中Fonio的中文翻译来自[维基百科：谷物](https://zh.wikipedia.org/zh-cn/%E8%B0%B7%E7%89%A9)]：
+最近读到这篇论文《[Genomic variation in 3,010 diverse accessions of Asian cultivated rice](https://doi.org/10.1038/s41586-018-0063-9)》才知道原来 Japonica rice 是籼稻、Indica rice 是粳（geng）稻。作为农学专业的学生，这是不是太丢人了:joy:。赶紧整理下主要禾谷类作物的中、英文名和拉丁文学名：
 
-```{r name-of-crops}
-crops <- read_excel('../../static/data/crops.xlsx')
-knitr::kable(crops, caption='Name of major cereals')
+```{r cereal-crop-names}
+cereal_crop_names <- read_excel('data/cereal_crop_names.xlsx')
+cereal_crop_names %>% gt() %>% 
+  tab_header(title ='Names of major cereals') %>% 
+  fmt_markdown(columns = vars('Scientific Name')) %>% 
+  tab_footnote(
+    footnote = md('中文名来自[维基百科：谷物](https://zh.wikipedia.org/zh-cn/%E8%B0%B7%E7%89%A9)'),
+    locations = cells_body(
+      columns = vars('中文名'),
+      rows = 11
+    )
+  )
 ```
 
-以及历史产量^[数据来源：[FAO](http://www.fao.org/faostat/en/#data)]：（_手机建议横屏浏览_）
+以及历史产量：（_手机建议横屏浏览_）
 
-```{r production, fig.cap='World production of cereals from 1961 to 2016', out.width='100%'}
-da <- read_csv('../../static/data/FAOSTAT-data-5-7-2018.csv') %>%
-  filter(! Item %in% c('Grain, mixed', 'Cereals, nes')) %>%
-  mutate(Item=if_else(Item=='Rice, paddy','Rice',Item)) %>%
-  rename(Crop=Item) %>% 
-  spread(Element,Value)
+```{r production, fig.cap='1961-2016年全球主要谷物产量，数据来源于[联合国粮农组织](http://www.fao.org/faostat/en/#data)。', out.width='100%'}
+data <- read_csv('data/FAOSTAT-data-5-7-2018.csv') %>%
+  filter(!Item %in% c('Grain, mixed', 'Cereals, nes')) %>%
+  mutate(Item = if_else(Item == 'Rice, paddy', 'Rice', Item)) %>%
+  rename(Crop = Item) %>%
+  spread(Element, Value) %>%
+  left_join(cereal_crop_names, by = c('Crop' = 'English Name'))
 
-p <- ggplot(da)+aes(x=Year,y=Production,color=Crop)+
-  geom_point()+geom_line()+
-  labs(x='Year',y='Production (tonne)')
-plotly::ggplotly(p)
+fig <- ggplot(data) + aes(x = Year, y = Production / 1e6, color =  中文名) +
+  geom_point() + geom_line() +
+  labs(x = '年份', y = '全球产量（百万吨）', color = '谷物') +
+  scale_x_continuous(breaks = seq(1960, 2016, 10)) +
+  theme(text = element_text(family = 'STHeiti'))
+fig %>% plotly::ggplotly()
 ```

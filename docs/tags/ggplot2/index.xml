@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ggplot2 on Yadong Liu | 刘亚东</title>
+    <link>/tags/ggplot2/</link>
+    <description>Recent content in ggplot2 on Yadong Liu | 刘亚东</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 27 Apr 2018 00:00:00 +0000</lastBuildDate><atom:link href="/tags/ggplot2/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>全球主要谷物年产量：1961-2016</title>
+      <link>/blog/major-cereals-production/</link>
+      <pubDate>Fri, 27 Apr 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/major-cereals-production/</guid>
+      <description>最近读到这篇论文《Genomic variation in 3,010 diverse accessions of Asian cultivated rice》才知道原来 Japonica rice 是籼稻、Indica rice 是粳（geng）稻。作为农学专业的学生，这是不</description>
+    </item>
+    
+  </channel>
+</rss>

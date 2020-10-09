@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Introduction to R for Data Analysis</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Yadong Liu" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link href="libs/remark-css/default-fonts.css" rel="stylesheet" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Introduction to R for Data Analysis
+### <em>Yadong Liu</em>
+### November 2019
+
+---
+
+
+
+
+background-image: url(https://d33wubrfki0l68.cloudfront.net/86cc45e87bb755a3bcecce462a6524e68d13a466/67469/images/r4ds/data_science_pipeline.png)
+background-size: 80%
+
+# Big Picture
+
+---
+background-image: url(https://www.r-project.org/Rlogo.png)
+background-size: 100px
+background-position: 30% 50%
+
+class: center, middle
+
+# you ready?
+
+---
+class: inverse, center, middle
+
+# 1. Getting Started
+
+---
+background-image: url(https://revolution-computing.typepad.com/.a/6a010534b1db25970b01b8d2594d25970c-800wi)
+background-position: 95% 50%
+background-size: 350px
+
+## About [R](https://www.r-project.org)
+
+A language and environment for statistical computing and graphics
+
+Created by statisticians for statisticians
+
+**Core/Base + Addon**
+
+- [CRAN](https://cloud.r-project.org) (&gt;15000) `install.packages()`
+- [Bioconductor](https://www.bioconductor.org) `remotes::install_bioc()`
+- [Github](https://github.com) `remotes::install_github()`
+
+## About [RStudio](https://rstudio.com)
+
+IDE + Packages + Community + Education
+
+---
+background-image: url(https://avatars1.githubusercontent.com/u/22032646?s=200&amp;v=4)
+background-size: 100px
+background-position: 90% 6%
+
+## About [Tidyverse](https://tidyverse.org)
+
+A collection of packages designed for data science
+  - ggplot2, readr, tibble, tidyr, dplyr, stringr, lubridate, purrr, ...
+
+```
+install.packages('tidyverse')
+library(tidyverse)
+```
+
+## About [Hadley Wickham](http://hadley.nz)
+
+Chief Scientist at RStudio
+
+Winner of 2019 [COPSS](https://community.amstat.org/copss/home) Presidents' Award
+
+&gt;For influential work in statistical computing, visualization, graphics, and data analysis; for developing and implementing an impressively comprehensive computational infrastructure for data analysis through R software; for making statistical thinking and computing accessible to large audience; and for enhancing an appreciation for the important role of statistics among data scientists.
+
+---
+background-image: url(https://china-r.org/img/China-R-Logo-trans.png)
+background-position: 50% 60%
+
+## About [Yihui Xie|谢益辉](https://yihui.name)
+
+Founder of [Capital of Statistics|统计之都](https://cosx.org)
+
+Initiator of [China-R Conference|中国R语言会议](https://china-r.org)
+
+---
+## Data type
+
+logical, integer, double, character, factor, Date, Date-time
+
+**vector &amp; list**
+
+.pull-left[
+```r
+lgl_var &lt;- c(TRUE, FALSE)
+int_var &lt;- c(1L, 6L, 10L)
+dbl_var &lt;- c(1, 2.5, 4.5)
+chr_var &lt;- c("these are", "some strings")
+```
+![](https://d33wubrfki0l68.cloudfront.net/8a3d360c80da1186b1373a0ff0ddf7803b96e20d/254c6/diagrams/vectors/atomic.png)&lt;!-- --&gt;
+]
+
+.pull-right[
+```r
+l1 &lt;- list(
+  1:3, 
+  "a", 
+  c(TRUE, FALSE, TRUE), 
+  c(2.3, 5.9)
+  )
+```
+![](https://d33wubrfki0l68.cloudfront.net/9628eed602df6fd55d9bced4fba0a5a85d93db8a/36c16/diagrams/vectors/list.png)
+]
+
+---
+** matrix &amp; data frame**
+
+
+```r
+df1 &lt;- data.frame(x = 1:3 * 10)
+df1$y &lt;- matrix(1:9, nrow = 3)
+df1$z &lt;- data.frame(a = 3:1, b = letters[1:3], stringsAsFactors = FALSE)
+str(df1)
+```
+
+```
+## 'data.frame':	3 obs. of  3 variables:
+##  $ x: num  10 20 30
+##  $ y: int [1:3, 1:3] 1 2 3 4 5 6 7 8 9
+##  $ z:'data.frame':	3 obs. of  2 variables:
+##   ..$ a: int  3 2 1
+##   ..$ b: chr  "a" "b" "c"
+```
+
+&lt;img src="https://d33wubrfki0l68.cloudfront.net/38c47352b8062a6d59318b3bbd1f86b062419322/7780c/diagrams/vectors/data-frame-matrix.png" width="60%" style="display: block; margin: auto;" /&gt;
+
+---
+background-image: url(https://bookdown.org/wangminjie/R4DS/images/data_struction1.png)
+background-size: contain
+
+---
+**factor**
+
+```r
+rx &lt;- factor(c(1, 2, 3, 1, 1, 3, 2, 3, 3), levels = 1:3,
+             labels = c("g1", "g2", "g3"))
+attributes(x)
+typeof(x)
+table(x)
+```
+
+**Date**
+
+```r
+today &lt;- Sys.Date()
+typeof(today)
+attributes(today)
+date &lt;- as.Date("2019-10-31")
+```
+
+**missing values**
+
+```r
+NA
+NaN
+NULL
+is.na()
+is.nan()
+is.null()
+```
+
+---
+## Subsetting
+
+.pull-left[
+
+```r
+*# atomic vector
+x &lt;- 1:5
+length(x)
+x[1]
+x[-1]
+x[1:3] &lt;- 3:1
+x[c(TRUE,TRUE,TRUE,FALSE,FALSE)]
+names(x)
+names(x) &lt;- LETTERS[1:length(x)]
+names(x)
+x['E']
+x[c('A', 'B', 'C')]
+```
+
+```
+## [1] 5
+## [1] 1
+## [1] 2 3 4 5
+## [1] 3 2 1
+## NULL
+## [1] "A" "B" "C" "D" "E"
+## E 
+## 5 
+## A B C 
+## 3 2 1
+```
+]
+
+.pull-right[
+
+```r
+*# list
+l &lt;- list('one' = c('a', 'b', 'c'),
+          'two' = 1:5,
+          'three' = c(TRUE, FALSE)
+          )
+l[1]
+l[[1]]
+l[[1]][1]
+l[['one']]
+l$one
+```
+
+```
+## $one
+## [1] "a" "b" "c"
+## 
+## [1] "a" "b" "c"
+## [1] "a"
+## [1] "a" "b" "c"
+## [1] "a" "b" "c"
+```
+]
+
+---
+background-image: url(https://pbs.twimg.com/media/CO2_qPVWsAAErbv?format=png&amp;name=large)
+background-size: contain
+
+---
+background-image: url(https://d33wubrfki0l68.cloudfront.net/2f3f752cae25018554d484464f117e600ff365a2/37627/diagrams/lists-subsetting.png)
+background-size: 500px
+
+```r
+a &lt;- list(a = 1:3, b = "a string", c = pi, d = list(-1, -5))
+```
+
+---
+.pull-left[
+
+```r
+(m &lt;- matrix(1:9, nrow = 3))
+```
+
+```
+##      [,1] [,2] [,3]
+## [1,]    1    4    7
+## [2,]    2    5    8
+## [3,]    3    6    9
+```
+
+```r
+m[1:2, 2:3]
+```
+
+```
+##      [,1] [,2]
+## [1,]    4    7
+## [2,]    5    8
+```
+
+```r
+m[1, ]
+```
+
+```
+## [1] 1 4 7
+```
+
+```r
+m[1, , drop = FALSE]
+```
+
+```
+##      [,1] [,2] [,3]
+## [1,]    1    4    7
+```
+]
+
+.pull-right[
+```r
+df &lt;- data.frame(x = 1:4, y = 4:1, z = letters[1:4],
+                 stringsAsFactors = FALSE)
+df
+df[c("x", "z")]
+df[1:2]
+df[1:2, ]
+```
+]
+
+---
+## Function
+
+population standard deviation
+
+`$$\sqrt{\frac{1}{n}\sum_{i=1}^{n}{(x-\bar{x})^2}}$$`
+
+
+```r
+x &lt;- rnorm(10)
+sqrt(mean((x - mean(x))^2))
+```
+
+```
+## [1] 0.9244023
+```
+
+```r
+# avoid repeat yourself
+sd_pop &lt;- function(x) {
+  return(sqrt(mean((x - mean(x))^2)))
+}
+sd_pop(x)
+```
+
+```
+## [1] 0.9244023
+```
+
+---
+**How to view the source code?**
+
+1. just type function name e.g. `sd`
+
+1. if is S3 generic function, e.g. `mean`, use methods() to get the specific method like `mean.default`, or `getAnywhere()`
+
+1. if S4, `getMethod()` may be helpful
+
+1. base R source in [github](https://github.com/wch/r-source)
+
+---
+**Pipe %&gt;%**
+
+```r
+* # low readability
+leave_house(get_dressed(get_out_of_bed(wake_up(me))))
+
+* # intermediate variables
+me1 &lt;- wake_up(me)
+me2 &lt;- get_out_of_bed(me1)
+me3 &lt;- get_dressed(me2)
+leave_house(me3)
+
+* # nice
+me %&gt;% 
+  wake_up() %&gt;% 
+  get_out_of_bed() %&gt;% 
+  get_dressed() %&gt;% 
+  leave_house()
+
+```
+
+**Base R Cheatsheet**
+
+RStudio: Help &gt; Cheatsheets
+
+[http://github.com/rstudio/cheatsheets/raw/master/base-r.pdf](http://github.com/rstudio/cheatsheets/raw/master/base-r.pdf)
+
+---
+class: inverse, center, middle
+
+# 2. Data I/O
+readr, readxl, DBI, vroom, data.table
+---
+**csv files**
+
+- base R: `read.csv(), write.csv()`
+- [readr](https://readr.tidyverse.org): `read_csv(), write_csv()`
+- vroom: `vroom(), vroom_write()`
+- data.table: `fread(), fwrite()`
+
+**excel files**
+
+`readxl::read_excel()`
+
+**database**
+
+`DBI::dbConnect()`
+
+**Data Import Cheatsheet**
+
+[https://rawgit.com/rstudio/cheatsheets/master/data-import.pdf](https://rawgit.com/rstudio/cheatsheets/master/data-import.pdf)
+
+---
+class: inverse, center, middle
+
+# 3. Data Visualisation
+
+ggplot2
+
+---
+## diamonds
+
+
+```r
+head(diamonds)
+```
+
+```
+## # A tibble: 6 x 10
+##   carat cut       color clarity depth table price     x     y     z
+##   &lt;dbl&gt; &lt;ord&gt;     &lt;ord&gt; &lt;ord&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1 0.23  Ideal     E     SI2      61.5    55   326  3.95  3.98  2.43
+## 2 0.21  Premium   E     SI1      59.8    61   326  3.89  3.84  2.31
+## 3 0.23  Good      E     VS1      56.9    65   327  4.05  4.07  2.31
+## 4 0.290 Premium   I     VS2      62.4    58   334  4.2   4.23  2.63
+## 5 0.31  Good      J     SI2      63.3    58   335  4.34  4.35  2.75
+## 6 0.24  Very Good J     VVS2     62.8    57   336  3.94  3.96  2.48
+```
+
+---
+## Base R
+
+
+```r
+hist(diamonds$price)
+plot(density(diamonds$price))
+boxplot(price~cut, diamonds)
+```
+
+&lt;img src="intro2r_files/figure-html/unnamed-chunk-9-1.png" width="33%" /&gt;&lt;img src="intro2r_files/figure-html/unnamed-chunk-9-2.png" width="33%" /&gt;&lt;img src="intro2r_files/figure-html/unnamed-chunk-9-3.png" width="33%" /&gt;
+
+---
+## why [ggplot2](https://ggplot2.tidyverse.org)
+
+&gt; “R的基础绘图系统基本就是一个纸笔模型，即一块画布摆在面前，可以在这里画几个点，在那里画几条线，指哪儿画哪儿，但这不是让数据分析者说话的方式，数据分析者不会说这条线用#FE09BE颜色，那个点用三角形状，他们只会说，把图中的线用数据中的职业类型变量上色，或者图中点的形状对应性别变量，这是数据分析者的说话方式，而ggplot2正是以这种方式来表达的。”  ---谢益辉
+
+---
+
+
+```r
+ggplot(diamonds) + aes(price) + 
+  geom_histogram()
+```
+
+```
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+```
+
+```r
+ggplot(diamonds) + aes(price) +
+  stat_density(geom = 'line')
+
+ggplot(diamonds) + aes(cut, price) +
+  geom_boxplot()
+```
+
+&lt;img src="intro2r_files/figure-html/unnamed-chunk-10-1.png" width="33%" /&gt;&lt;img src="intro2r_files/figure-html/unnamed-chunk-10-2.png" width="33%" /&gt;&lt;img src="intro2r_files/figure-html/unnamed-chunk-10-3.png" width="33%" /&gt;
+
+---
+**Template**
+
+```r
+ggplot(data = xxx, mapping = aes()) + 
+  geom_xxx() or stat_xxx() + # one or more layers
+  scale_xxx() + 
+  coord_xxx() + 
+  facet_xxx() + 
+  theme_xxx()
+```
+
+
+```r
+ggplot(diamonds) + aes(price) + 
+  geom_histogram(aes(y= ..density..)) + 
+  geom_density(color = 'blue')
+```
+
+&lt;img src="intro2r_files/figure-html/unnamed-chunk-11-1.png" width="90%" /&gt;
+
+---
+**Geometric objects**
+
+point, line, bar, box, text, ...
+
+
+```r
+ggplot(diamonds) + aes(carat, price) + 
+  geom_point()
+
+ggplot(diamonds) + aes(carat, price) + 
+  geom_hex()
+```
+
+&lt;img src="intro2r_files/figure-html/unnamed-chunk-12-1.png" width="50%" /&gt;&lt;img src="intro2r_files/figure-html/unnamed-chunk-12-2.png" width="50%" /&gt;
+
+---
+background-image: url(https://d33wubrfki0l68.cloudfront.net/70a3b18a1128c785d8676a48c005ee9b6a23cc00/7283c/images/visualization-stat-bar.png)
+background-size: contain
+background-position: 50% 90%
+
+**Aesthetic mapping**
+
+shape, size, color, linetype, fill, font size, ...
+
+ggplot2 &gt; vignettes
+
+```r
+ggplot(diamonds) + aes(cut) +
+  geom_bar() + 
+  theme_bw()
+```
+
+---
+
+```r
+ggplot(diamonds) + aes(cut, fill = cut) +
+  geom_bar()
+
+ggplot(diamonds) + aes(cut, fill = clarity) +
+  geom_bar()
+
+ggplot(diamonds) + aes(cut, fill = clarity) +
+  geom_bar(position = 'dodge')
+```
+
+&lt;img src="intro2r_files/figure-html/unnamed-chunk-13-1.png" width="33%" /&gt;&lt;img src="intro2r_files/figure-html/unnamed-chunk-13-2.png" width="33%" /&gt;&lt;img src="intro2r_files/figure-html/unnamed-chunk-13-3.png" width="33%" /&gt;
+
+---
+**facet**
+
+
+```r
+ggplot(diamonds) + aes(price) +
+  geom_density() + 
+  facet_grid(cut~.)
+```
+
+![](intro2r_files/figure-html/unnamed-chunk-14-1.png)&lt;!-- --&gt;
+
+---
+**plotly**
+
+```r
+p &lt;- diamonds %&gt;% 
+  sample_n(500) %&gt;% 
+  ggplot() + aes(carat, price) +
+  geom_point() + 
+  facet_grid(.~cut)
+plotly::ggplotly(p)
+```
+
+**ggplot2 Cheatsheet**
+
+[https://github.com/rstudio/cheatsheets/blob/master/data-visualization-2.1.pdf](https://github.com/rstudio/cheatsheets/blob/master/data-visualization-2.1.pdf)
+
+---
+class: inverse, center, middle
+
+# 4. Data Manipulation
+
+tidyr, dplyr
+
+---
+## Tidy Data
+
+&gt; "Tidy datasets are all alike, but every messy dataset is messy in its onw way." --- Hadley Wickham
+
+A dataset is tidy if:
+  1. Each variable is in its own column.
+  
+  1. Each case is in its own row.
+  
+  1. Each value is in its own cell.
+
+---
+background-image: url(https://d33wubrfki0l68.cloudfront.net/6f1ddb544fc5c69a2478e444ab8112fb0eea23f8/91adc/images/tidy-1.png)
+background-size: contain
+
+---
+background-image: url(https://rstudio-education.github.io/tidyverse-cookbook/images/tidyr-gather.png)
+
+**gather**
+
+```r
+table4a %&gt;% 
+  gather(key = "year", value = "cases", 2:3)
+  pivot_longer(2:3, names_to = "year", values_to = "cases")
+```
+
+---
+background-image: url(https://rstudio-education.github.io/tidyverse-cookbook/images/tidyr-spread.png)
+background-position: 50% 60%
+
+**spread**
+
+```r
+table2 %&gt;% 
+  spread(key = type, value = count)
+  pivot_wider(names_from = type, values_from = count)
+```
+
+---
+background-image: url(https://rstudio-education.github.io/tidyverse-cookbook/images/tidyr-separate.png)
+
+**separate**
+
+```r
+table3 %&gt;% 
+  separate(col = rate, into = c("cases", "pop"))
+```
+
+---
+background-image: url(https://rstudio-education.github.io/tidyverse-cookbook/images/tidyr-unite.png)
+
+**unite**
+
+```r
+table5 %&gt;% 
+  unite(col = "year", century, year, sep = "")
+```
+
+---
+**select, filter**
+
+
+```r
+table1 %&gt;% 
+  select(country, year, population)
+```
+
+```
+## # A tibble: 6 x 3
+##   country      year population
+##   &lt;chr&gt;       &lt;int&gt;      &lt;int&gt;
+## 1 Afghanistan  1999   19987071
+## 2 Afghanistan  2000   20595360
+## 3 Brazil       1999  172006362
+## 4 Brazil       2000  174504898
+## 5 China        1999 1272915272
+## 6 China        2000 1280428583
+```
+
+```r
+table1 %&gt;% 
+  filter(year == 2000)
+```
+
+```
+## # A tibble: 3 x 4
+##   country      year  cases population
+##   &lt;chr&gt;       &lt;int&gt;  &lt;int&gt;      &lt;int&gt;
+## 1 Afghanistan  2000   2666   20595360
+## 2 Brazil       2000  80488  174504898
+## 3 China        2000 213766 1280428583
+```
+
+---
+**mutate**
+
+
+```r
+table1 %&gt;% 
+  mutate(rate = cases/population, percent = rate * 100)
+```
+
+```
+## # A tibble: 6 x 6
+##   country      year  cases population      rate percent
+##   &lt;chr&gt;       &lt;int&gt;  &lt;int&gt;      &lt;int&gt;     &lt;dbl&gt;   &lt;dbl&gt;
+## 1 Afghanistan  1999    745   19987071 0.0000373 0.00373
+## 2 Afghanistan  2000   2666   20595360 0.000129  0.0129 
+## 3 Brazil       1999  37737  172006362 0.000219  0.0219 
+## 4 Brazil       2000  80488  174504898 0.000461  0.0461 
+## 5 China        1999 212258 1272915272 0.000167  0.0167 
+## 6 China        2000 213766 1280428583 0.000167  0.0167
+```
+
+---
+**summarise**
+
+
+```r
+table1 %&gt;% 
+  summarise(total_cases = sum(cases), max_rate = max(cases/population))
+```
+
+```
+## # A tibble: 1 x 2
+##   total_cases max_rate
+##         &lt;int&gt;    &lt;dbl&gt;
+## 1      547660 0.000461
+```
+
+```r
+table1 %&gt;% 
+  group_by(country, year) %&gt;% 
+  summarise_at(vars(cases,population), list(min=min, mean=mean, max=max))
+```
+
+```
+## # A tibble: 6 x 8
+## # Groups:   country [3]
+##   country  year cases_min population_min cases_mean population_mean cases_max
+##   &lt;chr&gt;   &lt;int&gt;     &lt;int&gt;          &lt;int&gt;      &lt;dbl&gt;           &lt;dbl&gt;     &lt;int&gt;
+## 1 Afghan…  1999       745       19987071        745        19987071       745
+## 2 Afghan…  2000      2666       20595360       2666        20595360      2666
+## 3 Brazil   1999     37737      172006362      37737       172006362     37737
+## 4 Brazil   2000     80488      174504898      80488       174504898     80488
+## 5 China    1999    212258     1272915272     212258      1272915272    212258
+## 6 China    2000    213766     1280428583     213766      1280428583    213766
+## # … with 1 more variable: population_max &lt;int&gt;
+```
+
+---
+background-image: url(https://raw.githubusercontent.com/rstudio/cheatsheets/master/pngs/thumbnails/data-transformation-cheatsheet-thumbs.png)
+background-size: contain
+
+**Data Transformation Cheatsheet**
+
+[https://github.com/rstudio/cheatsheets/blob/master/data-transformation.pdf](https://github.com/rstudio/cheatsheets/blob/master/data-transformation.pdf)
+
+---
+class: inverse, center, middle
+
+# 5. Data Modeling
+
+---
+### About Max Kuhn
+
+A package [caret](http://topepo.github.io/caret/index.html)
+
+A book [Applied Predictive Modeling](http://appliedpredictivemodeling.com)
+
+### About tidymodels
+
+ - resample
+ - recipes
+ - parnip
+ - yardstick
+ - ...
+
+---
+class: inverse, center, middle
+
+# 6. R Markdown
+
+knitr, rmarkdown, bookdown, blogdown, pagedown
+
+---
+## Markdown?
+
+A lightweight markup language.
+
+Help &gt; Markdown Quick Reference
+
+---
+background-image: url(https://d33wubrfki0l68.cloudfront.net/61d189fd9cdf955058415d3e1b28dd60e1bd7c9b/9791d/images/rmarkdownflow.png)
+
+## Workflow
+
+---
+background-image: url(https://d33wubrfki0l68.cloudfront.net/aee91187a9c6811a802ddc524c3271302893a149/a7003/images/bandthree2.png)
+
+## Rmd 生万物
+
+---
+## More than R
+
+
+```r
+names(knitr::knit_engines$get())
+```
+
+```
+##  [1] "awk"       "bash"      "coffee"    "gawk"      "groovy"    "haskell"  
+##  [7] "lein"      "mysql"     "node"      "octave"    "perl"      "psql"     
+## [13] "Rscript"   "ruby"      "sas"       "scala"     "sed"       "sh"       
+## [19] "stata"     "zsh"       "highlight" "Rcpp"      "tikz"      "dot"      
+## [25] "c"         "cc"        "fortran"   "fortran95" "asy"       "cat"      
+## [31] "asis"      "stan"      "block"     "block2"    "js"        "css"      
+## [37] "sql"       "go"        "python"    "julia"     "sass"      "scss"
+```
+
+---
+## Demos
+
+```r
+install.packages('rticles')
+install.packages('tinytex')
+tinytex::install_tinytex()
+```
+
+---
+## Suggested readings
+
+1. [R for Data Science](https://r4ds.had.co.nz)
+
+1. [ggplot2: Elegant Graphics for Data Analysis](https://ggplot2-book.org)
+
+1. [现代统计图形](https://bookdown.org/xiangyun/msg/)
+
+1. [R Markdown: The Definitive Guide](https://bookdown.org/yihui/rmarkdown/)
+
+1. [Advanced R](https://adv-r.hadley.nz)
+
+---
+class: center, middle
+
+# _Thanks!_
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

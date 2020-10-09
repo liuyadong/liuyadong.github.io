@@ -25,6 +25,10 @@ publishDir = "docs"
     name = "Publications"
     url = "/publications/"
     weight = 3
+[[menu.main]]
+    name = "Slides"
+    url = "/slides/"
+    weight = 4
 
 [params]
     description = "Personal website of Yadong Liu; 刘亚东的个人网站"

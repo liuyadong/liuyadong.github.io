@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>遇见 on Yadong Liu | 刘亚东</title>
-    <link>https://liuyadong.github.io/tags/%E9%81%87%E8%A7%81/</link>
+    <link>/tags/%E9%81%87%E8%A7%81/</link>
     <description>Recent content in 遇见 on Yadong Liu | 刘亚东</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 27 Apr 2018 00:00:00 +0000</lastBuildDate><atom:link href="https://liuyadong.github.io/tags/%E9%81%87%E8%A7%81/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 27 Apr 2018 00:00:00 +0000</lastBuildDate><atom:link href="/tags/%E9%81%87%E8%A7%81/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>世界主要谷物年产量</title>
-      <link>https://liuyadong.github.io/post/2018/04/27/major-cereals-production/</link>
+      <link>/blog/major-cereals-production/</link>
       <pubDate>Fri, 27 Apr 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://liuyadong.github.io/post/2018/04/27/major-cereals-production/</guid>
+      <guid>/blog/major-cereals-production/</guid>
       <description>看到这篇文章《Genomic variation in 3,010 diverse accessions of Asian cultivated rice》才知道 Japonica rice 是籼稻，Indica rice 是粳（geng）稻的意思。电脑里一大堆的 Japonica 或 Indica rice 数据，</description>
     </item>
     

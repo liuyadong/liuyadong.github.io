@@ -18,14 +18,14 @@ publishDir = "docs"
     url = "/"
     weight = 1
 [[menu.main]]
-    name = "Post"
-    url = "/post/"
+    name = "Blog"
+    url = "/blog/"
     weight = 2
+[[menu.main]]
+    name = "Publications"
+    url = "/publications/"
+    weight = 3
 
 [params]
     description = "Personal website of Yadong Liu; 刘亚东的个人网站"
     footer = "&copy; [Yadong Liu](/) 2018 - 2020"
-    
-[[params.logo]]
-    img = "/img/dong.png"
-    alt = "Yadong Liu"

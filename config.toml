@@ -1,4 +1,4 @@
-baseurl = "https://liuyadong.github.io"
+baseurl = "https://liuyadong.github.io/"
 languageCode = "en-us"
 title = "Yadong Liu | 刘亚东"
 theme = "hugo-xmin"

@@ -7,7 +7,7 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
 footnotereturnlinkcontents = "↩"
 hasCJKLanguage = true
 enableEmoji = true
-publishDir = "docs"
+publishDir = "docs/"
 
 [permalinks]
     blog = "/blog/:year-:month-:day-:slug/"

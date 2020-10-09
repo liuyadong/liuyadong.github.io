@@ -40,9 +40,10 @@ data <- read_csv('data/FAOSTAT-data-5-7-2018.csv') %>%
   mutate(Item = if_else(Item == 'Rice, paddy', 'Rice', Item)) %>%
   rename(Crop = Item) %>%
   spread(Element, Value) %>%
-  left_join(cereal_crop_names, by = c('Crop' = 'English Name'))
+  left_join(cereal_crop_names, by = c('Crop' = 'English Name')) %>% 
+  mutate(Production = Production / 1e6) # million tonnes
 
-fig <- ggplot(data) + aes(x = Year, y = Production / 1e6, color =  中文名) +
+fig <- ggplot(data) + aes(x = Year, y = Production, color =  中文名) +
   geom_point() + geom_line() +
   labs(x = '年份', y = '全球产量（百万吨）', color = '谷物') +
   scale_x_continuous(breaks = seq(1960, 2016, 10)) +

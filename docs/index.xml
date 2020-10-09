@@ -8,6 +8,35 @@
     <language>en-us</language>
     <lastBuildDate>Sat, 13 Jul 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://liuyadong.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Publications</title>
+      <link>https://liuyadong.github.io/publications/</link>
+      <pubDate>Fri, 09 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://liuyadong.github.io/publications/</guid>
+      <description>2020 [8] Liu, Y., Kim, K. S., Beresford, R. M., &amp;amp; Fleisher, D. H. (2020). A generic composite measure of similarity between geospatial variables. Ecological Informatics, 60, 101169. https://doi.org/10.1016/j.ecoinf.2020.101169 2017 [7] 孙绿, 李玉刚, 王圣健, 刘亚东, 王志英, 刘丹, 李娜娜, 赵长星, &amp;amp; 盖红梅. (2017). 模拟干</description>
+    </item>
+    
+    <item>
+      <title>Slides</title>
+      <link>https://liuyadong.github.io/slides/</link>
+      <pubDate>Fri, 09 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://liuyadong.github.io/slides/</guid>
+      <description>  2019/11/01@HBO-Seminar Introduction to R for Data Analysis
+  2018/12/28 Introduction to Google Earth Engine with an example of sturctural similarity (SSIM) index
+  </description>
+    </item>
+    
+    <item>
+      <title>Software</title>
+      <link>https://liuyadong.github.io/software/</link>
+      <pubDate>Fri, 09 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://liuyadong.github.io/software/</guid>
+      <description> GCSM - R package for computing the generic composite similarity measure  </description>
+    </item>
+    
+    <item>
       <title>全球主要谷物年产量：1961-2016</title>
       <link>https://liuyadong.github.io/blog/2018-04-27-major-cereals-production/</link>
       <pubDate>Fri, 27 Apr 2018 00:00:00 +0000</pubDate>

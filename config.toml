@@ -4,7 +4,6 @@ title = "Yadong Liu | 刘亚东"
 theme = "hugo-xmin"
 disqusShortname = "yadong1990"
 ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
-preserveTaxonomyNames = true
 footnotereturnlinkcontents = "↩"
 hasCJKLanguage = true
 enableEmoji = true
@@ -12,6 +11,9 @@ publishDir = "docs"
 
 [permalinks]
     blog = "/blog/:year-:month-:day-:slug/"
+
+[taxonomies]
+    tag = "tags"
 
 [[menu.main]]
     name = "Home"

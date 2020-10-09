@@ -11,7 +11,7 @@ enableEmoji = true
 publishDir = "docs"
 
 [permalinks]
-    post = "/post/:year/:month/:day/:slug/"
+    blog = "/blog/:year-:month-:day-:slug/"
 
 [[menu.main]]
     name = "Home"

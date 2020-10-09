@@ -2,44 +2,44 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Yadong Liu | 刘亚东</title>
-    <link>/tags/</link>
+    <link>https://liuyadong.github.io/tags/</link>
     <description>Recent content in Tags on Yadong Liu | 刘亚东</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 27 Apr 2018 00:00:00 +0000</lastBuildDate><atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 27 Apr 2018 00:00:00 +0000</lastBuildDate><atom:link href="https://liuyadong.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>ggplot2</title>
-      <link>/tags/ggplot2/</link>
+      <link>https://liuyadong.github.io/tags/ggplot2/</link>
       <pubDate>Fri, 27 Apr 2018 00:00:00 +0000</pubDate>
       
-      <guid>/tags/ggplot2/</guid>
+      <guid>https://liuyadong.github.io/tags/ggplot2/</guid>
       <description></description>
     </item>
     
     <item>
       <title>gt</title>
-      <link>/tags/gt/</link>
+      <link>https://liuyadong.github.io/tags/gt/</link>
       <pubDate>Fri, 27 Apr 2018 00:00:00 +0000</pubDate>
       
-      <guid>/tags/gt/</guid>
+      <guid>https://liuyadong.github.io/tags/gt/</guid>
       <description></description>
     </item>
     
     <item>
       <title>plotly</title>
-      <link>/tags/plotly/</link>
+      <link>https://liuyadong.github.io/tags/plotly/</link>
       <pubDate>Fri, 27 Apr 2018 00:00:00 +0000</pubDate>
       
-      <guid>/tags/plotly/</guid>
+      <guid>https://liuyadong.github.io/tags/plotly/</guid>
       <description></description>
     </item>
     
     <item>
       <title>blockquotes</title>
-      <link>/tags/blockquotes/</link>
+      <link>https://liuyadong.github.io/tags/blockquotes/</link>
       <pubDate>Wed, 04 Apr 2018 00:00:00 +0000</pubDate>
       
-      <guid>/tags/blockquotes/</guid>
+      <guid>https://liuyadong.github.io/tags/blockquotes/</guid>
       <description></description>
     </item>
     

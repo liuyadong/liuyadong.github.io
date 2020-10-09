@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>plotly on Yadong Liu | 刘亚东</title>
-    <link>/tags/plotly/</link>
+    <link>https://liuyadong.github.io/tags/plotly/</link>
     <description>Recent content in plotly on Yadong Liu | 刘亚东</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 27 Apr 2018 00:00:00 +0000</lastBuildDate><atom:link href="/tags/plotly/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 27 Apr 2018 00:00:00 +0000</lastBuildDate><atom:link href="https://liuyadong.github.io/tags/plotly/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>全球主要谷物年产量：1961-2016</title>
-      <link>/blog/2018-04-27-major-cereals-production/</link>
+      <link>https://liuyadong.github.io/blog/2018-04-27-major-cereals-production/</link>
       <pubDate>Fri, 27 Apr 2018 00:00:00 +0000</pubDate>
       
-      <guid>/blog/2018-04-27-major-cereals-production/</guid>
+      <guid>https://liuyadong.github.io/blog/2018-04-27-major-cereals-production/</guid>
       <description>最近读到这篇论文《Genomic variation in 3,010 diverse accessions of Asian cultivated rice》才知道原来 Japonica rice 是籼稻、Indica rice 是粳（geng）稻。作为农学专业的学生，这是不</description>
     </item>
     

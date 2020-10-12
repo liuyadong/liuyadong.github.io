@@ -11,9 +11,6 @@ taxonomies:
   tag: tags
 permalinks:
   blog: /blog/:year-:month-:day-:slug/
-params:
-  description: Personal website of Yadong Liu; 刘亚东的个人网站
-  footer: '&copy; [Yadong Liu](/) 2018 - 2020'
 ignoreFiles:
   - \\.Rmd$
   - \\.Rmarkdown$
@@ -37,3 +34,6 @@ menu:
     - name: Software
       url: /software/
       weight: 5
+params:
+  description: Personal website of Yadong Liu; 刘亚东的个人网站
+  footer: '&copy; [Yadong Liu](/) 2018 - 2020'

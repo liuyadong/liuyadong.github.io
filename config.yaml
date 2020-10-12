@@ -1,15 +1,25 @@
 baseurl: https://liuyadong.github.io/
-disqusShortname: yadong1990
-enableEmoji: yes
-footnotereturnlinkcontents: ↩
+title: Yadong Liu | 刘亚东
+languageCode: en-us
 hasCJKLanguage: yes
+enableEmoji: yes
+disqusShortname: yadong1990
+footnotereturnlinkcontents: ↩
+theme: hugo-xmin
+publishDir: docs/
+taxonomies:
+  tag: tags
+permalinks:
+  blog: /blog/:year-:month-:day-:slug/
+params:
+  description: Personal website of Yadong Liu; 刘亚东的个人网站
+  footer: '&copy; [Yadong Liu](/) 2018 - 2020'
 ignoreFiles:
   - \\.Rmd$
   - \\.Rmarkdown$
   - _cache$
   - \\.knit\\.md$
   - \\.utf8\\.md$
-languageCode: en-us
 menu:
   main:
     - name: Home
@@ -27,13 +37,3 @@ menu:
     - name: Software
       url: /software/
       weight: 5
-params:
-  description: Personal website of Yadong Liu; 刘亚东的个人网站
-  footer: '&copy; [Yadong Liu](/) 2018 - 2020'
-permalinks:
-  blog: /blog/:year-:month-:day-:slug/
-publishDir: docs/
-taxonomies:
-  tag: tags
-theme: hugo-xmin
-title: Yadong Liu | 刘亚东

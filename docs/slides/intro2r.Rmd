@@ -1,9 +1,10 @@
 ---
 title: Introduction to R for Data Analysis
 author: _Yadong Liu_
-date: "November 2019"
+date: "November 2019 (updated: June 2021)"
 output:
   xaringan::moon_reader:
+    self_contained: true
     lib_dir: libs
     nature:
       highlightStyle: github
@@ -561,11 +562,13 @@ A package [caret](http://topepo.github.io/caret/index.html)
 
 A book [Applied Predictive Modeling](http://appliedpredictivemodeling.com)
 
+Another book [Tidy Modeling with R](https://www.tmwr.org)
+
 ### About tidymodels
 
- - resample
- - recipes
  - parnip
+ - recipes
+ - resample
  - yardstick
  - ...
 
@@ -618,7 +621,7 @@ tinytex::install_tinytex()
 
 1. [现代统计图形](https://bookdown.org/xiangyun/msg/)
 
-1. [R Markdown: The Definitive Guide](https://bookdown.org/yihui/rmarkdown/)
+1. [R Markdown Cookbook](https://bookdown.org/yihui/rmarkdown-cookbook/)
 
 1. [Advanced R](https://adv-r.hadley.nz)
 

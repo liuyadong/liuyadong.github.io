@@ -566,9 +566,10 @@ Another book [Tidy Modeling with R](https://www.tmwr.org)
 
 ### About tidymodels
 
- - parnip
+ - parsnip
  - recipes
- - resample
+ - rsample
+ - workflows
  - yardstick
  - ...
 

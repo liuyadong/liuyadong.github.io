@@ -598,7 +598,7 @@ background-image: url(https://d33wubrfki0l68.cloudfront.net/aee91187a9c6811a802d
 ## Rmd 生万物
 
 ---
-## More than R
+## Beyond R
 
 ```{r}
 names(knitr::knit_engines$get())

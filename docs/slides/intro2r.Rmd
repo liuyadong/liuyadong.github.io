@@ -558,13 +558,13 @@ class: inverse, center, middle
 ---
 ### About Max Kuhn
 
-A package [caret](http://topepo.github.io/caret/index.html)
+~~A package [caret](http://topepo.github.io/caret/index.html)~~
 
-A book [Applied Predictive Modeling](http://appliedpredictivemodeling.com)
+~~A book [Applied Predictive Modeling](http://appliedpredictivemodeling.com)~~
 
-Another book [Tidy Modeling with R](https://www.tmwr.org)
+A book [Tidy Modeling with R](https://www.tmwr.org)
 
-### About tidymodels
+### About [Tidymodels](https://www.tidymodels.org)
 
  - parsnip
  - recipes

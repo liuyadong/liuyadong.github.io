@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <title>Setting up Wolfram Engine | Yadong Liu | 刘亚东</title>
+    
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    
+  </head>
+
+  <body>
+    <nav>
+    <ul class="menu">
+      
+      <li><a href="/">Home</a></li>
+      
+      <li><a href="/blog/">Blog</a></li>
+      
+      <li><a href="/publications/">Publications</a></li>
+      
+      <li><a href="/slides/">Slides</a></li>
+      
+      <li><a href="/software/">Software</a></li>
+      
+    </ul>
+    <hr/>
+    </nav>
+
+<div class="article-meta">
+<h1><span class="title">Setting up Wolfram Engine</span></h1>
+
+<h2 class="date">2021/06/07</h2>
+<p class="terms">
+    
+    
+    
+    
+    
+  </p>
+</div>
+
+<main>
+
+<script src="https://liuyadong.github.io/blog/2021-06-07-wolfram-engine/index_files/header-attrs/header-attrs.js"></script>
+
+
+<div id="step-1.-install-wolfram-engine" class="section level2">
+<h2>Step 1. Install Wolfram Engine</h2>
+<ol style="list-style-type: decimal">
+<li><p><a href="https://account.wolfram.com/access/wolfram-engine/free">Get a free licence for Wolfram Engine</a></p></li>
+<li><p>Install Wolfram Engine by</p>
+<ul>
+<li><code>brew install wolfram-engine</code></li>
+<li>or download <a href="https://www.wolfram.com/engine/?source=nav/">here</a></li>
+</ul></li>
+<li><p>Download and install WolframScript <a href="https://account.wolfram.com/products/downloads/wolframscript/">here</a></p></li>
+<li><p>Run <code>wolframscript</code> then type Wolfram ID and password (only once) to activate</p></li>
+</ol>
+</div>
+<div id="step-2.-install-wolfram-language-kernel-for-jupyter" class="section level2">
+<h2>Step 2. Install Wolfram Language kernel for Jupyter</h2>
+<p>Follow instructions from <a href="https://github.com/WolframResearch/WolframLanguageForJupyter/">WikframResearch/WolframLanguageForJupyter</a></p>
+<pre class="bash"><code>git clone https://github.com/WolframResearch/WolframLanguageForJupyter.git
+cd WolframLanguageForJupyter
+./configure-jupyter.wls add &quot;path/to/Wolfram-Engine-binary--not-wolframscript&quot; &quot;path/to/Jupyter-binary&quot;</code></pre>
+</div>
+<div id="run-jupyter-notebook-from-vs-code" class="section level2">
+<h2>Run Jupyter notebook from VS code</h2>
+<p>Select the Wolfram Language kernel</p>
+</div>
+<div id="set-wolfram-engine-for-knitr-experimental" class="section level2">
+<h2>Set Wolfram engine for knitr<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> (experimental)</h2>
+<pre class="r"><code>knitr::knit_engines$set(wolfram = function(options) {
+  code &lt;- paste(options$code, collapse = &quot;\n&quot;)
+  out &lt;- system2(
+    &#39;wolframscript&#39;, c(&#39;-code&#39;, shQuote(code)), stdout = TRUE
+  )
+  knitr::engine_output(options, code, out)
+})</code></pre>
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>See here: <a href="https://bookdown.org/yihui/rmarkdown-cookbook/custom-engine.html#custom-engine" class="uri">https://bookdown.org/yihui/rmarkdown-cookbook/custom-engine.html#custom-engine</a><a href="#fnref1" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+
+</main>
+
+  <footer>
+  
+  <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "yadong1990" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+  
+  <hr/>
+  © <a href="/">Yadong Liu</a> 2018 - 2021
+  
+  </footer>
+  </body>
+</html>
+

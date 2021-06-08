@@ -1,0 +1,47 @@
+---
+title: Setting up Wolfram Engine
+author: ''
+date: '2021-06-07'
+slug: wolfram-engine
+categories: []
+tags: []
+---
+
+## Step 1. Install Wolfram Engine
+
+1. [Get a free licence  for Wolfram Engine](https://account.wolfram.com/access/wolfram-engine/free)
+
+1. Install Wolfram Engine by
+
+    - `brew install wolfram-engine`
+    - or download [here](https://www.wolfram.com/engine/?source=nav/)
+  
+1. Download and install WolframScript [here](https://account.wolfram.com/products/downloads/wolframscript/)
+
+1. Run `wolframscript` then type Wolfram ID and password (only once) to activate
+  
+## Step 2. Install Wolfram Language kernel for Jupyter
+
+Follow instructions from [WikframResearch/WolframLanguageForJupyter](https://github.com/WolframResearch/WolframLanguageForJupyter/)
+
+```bash
+git clone https://github.com/WolframResearch/WolframLanguageForJupyter.git
+cd WolframLanguageForJupyter
+./configure-jupyter.wls add "path/to/Wolfram-Engine-binary--not-wolframscript" "path/to/Jupyter-binary"
+```
+
+## Run Jupyter notebook from VS code
+
+Select the Wolfram Language kernel
+
+## Set Wolfram engine for knitr^[See here: https://bookdown.org/yihui/rmarkdown-cookbook/custom-engine.html#custom-engine] (experimental)
+
+```r
+knitr::knit_engines$set(wolfram = function(options) {
+  code <- paste(options$code, collapse = "\n")
+  out <- system2(
+    'wolframscript', c('-code', shQuote(code)), stdout = TRUE
+  )
+  knitr::engine_output(options, code, out)
+})
+```

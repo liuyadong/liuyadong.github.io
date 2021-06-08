@@ -8,6 +8,20 @@
     <language>en-us</language>
     <lastBuildDate>Sat, 20 Mar 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://liuyadong.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Setting up Wolfram Engine</title>
+      <link>https://liuyadong.github.io/blog/2021-06-07-wolfram-engine/</link>
+      <pubDate>Mon, 07 Jun 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://liuyadong.github.io/blog/2021-06-07-wolfram-engine/</guid>
+      <description>Step 1. Install Wolfram Engine Get a free licence for Wolfram Engine
+ Install Wolfram Engine by
+ brew install wolfram-engine or download here  Download and install WolframScript here
+ Run wolframscript then type Wolfram ID and password (only once) to activate
+   Step 2. Install Wolfram Language kernel for Jupyter Follow instructions from WikframResearch/WolframLanguageForJupyter
+git clone https://github.com/WolframResearch/WolframLanguageForJupyter.git cd WolframLanguageForJupyter ./configure-jupyter.wls add &amp;quot;path/to/Wolfram-Engine-binary--not-wolframscript&amp;quot; &amp;quot;path/to/Jupyter-binary&amp;quot;  Run Jupyter notebook from VS code Select the Wolfram Language kernel</description>
+    </item>
+    
+    <item>
       <title>全球主要谷物年产量：1961-2016</title>
       <link>https://liuyadong.github.io/blog/2018-04-27-major-cereals-production/</link>
       <pubDate>Fri, 27 Apr 2018 00:00:00 +0000</pubDate>

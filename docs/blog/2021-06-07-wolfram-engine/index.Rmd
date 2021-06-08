@@ -9,7 +9,7 @@ tags: []
 
 ## Step 1. Install Wolfram Engine
 
-1. [Get a free licence  for Wolfram Engine](https://account.wolfram.com/access/wolfram-engine/free)
+1. [Get a free licence  for Wolfram Engine](https://wolfram.com/engine/free-license/)
 
 1. Install Wolfram Engine by
 

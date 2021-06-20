@@ -14,6 +14,7 @@ output:
 
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE)
+xaringanExtra::use_tile_view()
 library(tidyverse)
 ```
 

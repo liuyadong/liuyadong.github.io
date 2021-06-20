@@ -16,6 +16,7 @@ output:
 options(htmltools.dir.version = FALSE)
 xaringanExtra::use_tile_view()
 library(tidyverse)
+library(flipbookr)
 ```
 
 background-image: url(https://d33wubrfki0l68.cloudfront.net/86cc45e87bb755a3bcecce462a6524e68d13a466/67469/images/r4ds/data_science_pipeline.png)
@@ -350,7 +351,7 @@ boxplot(price~cut, diamonds)
 
 ---
 
-```{r, fig.show='hold', out.width='33%'}
+```{r, fig.show='hold', out.width='33%', message=FALSE}
 ggplot(diamonds) + aes(price) + 
   geom_histogram()
 
@@ -373,10 +374,17 @@ ggplot(data = xxx, mapping = aes()) +
   theme_xxx()
 ```
 
-```{r, message=F,fig.width=5, fig.asp=0.4, warning=FALSE, out.width='90%'}
-ggplot(diamonds) + aes(price) + 
-  geom_histogram(aes(y= ..density..)) + 
-  geom_density(color = 'blue')
+---
+
+`r chunk_reveal("layers")`
+
+```{r layers, message=F,fig.width=5, fig.asp=0.4, warning=FALSE, out.width='90%', include=FALSE, message=FALSE}
+ggplot(diamonds) + 
+  aes(price) + 
+  geom_histogram(aes(y = after_stat(density))) + 
+  geom_density(color = 'blue') +
+  facet_wrap(vars(cut), scales = 'free') +
+  theme_bw()
 ```
 
 ---

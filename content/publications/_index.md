@@ -5,7 +5,7 @@ date: 2020-10-09
 
 ## 2021
 
-[9] **Liu, Y.**, Kim, J., Fleisher, D. H., & Kim, K. S. (2021). Analogy-Based Crop Yield Forecasts Based on Temporal Similarity of Leaf Area Index. *Remote Sensing*, 13(16), 3069. https://doi.org/10.3390/rs13163069
+[9] **Liu, Y.**, Kim, J., Fleisher, D. H., & Kim, K.-S. (2021). Analogy-Based Crop Yield Forecasts Based on Temporal Similarity of Leaf Area Index. *Remote Sensing*, 13(16), 3069. https://doi.org/10.3390/rs13163069
 
 ## 2020
 

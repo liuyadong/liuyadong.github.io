@@ -1,0 +1,37 @@
+---
+title: Setting up sen2r
+author: ''
+date: '2022-01-03'
+slug: setting-up-sen2r
+categories: []
+tags: []
+---
+
+## Step 1. Install dependencies
+
+1. `brew install aria2`
+
+2. `brew install google-cloud-sdk`, then configure user account
+
+3. download [Sen2Cor v2.9](http://step.esa.int/main/snap-supported-plugins/sen2cor/sen2cor-v2-9/), then `sh Sen2Cor-02.09.00-Darwin64.run --target ~/.sen2r/sen2cor290`
+
+4. `brew install gdal -s`
+
+## Step 2. Configure paths (`~/.sen2r/paths.json`)
+
+```json
+{
+  "aria2c": ["/opt/homebrew/bin/aria2c"],
+  "gsutil": ["/opt/homebrew/bin/gsutil"],
+  "sen2cor": ["~/.sen2r/sen2cor290/bin/L2A_Process"],
+  "gdalinfo": ["/opt/homebrew/bin/gdalinfo"],
+  "ogrinfo": ["/opt/homebrew/bin/ogrinfo"],
+  "gdal_translate": ["/opt/homebrew/bin/gdal_translate"],
+  "gdalwarp": ["/opt/homebrew/bin/gdalwarp"],
+  "gdalbuildvrt": ["/opt/homebrew/bin/gdalbuildvrt"],
+  "gdaldem": ["/opt/homebrew/bin/gdaldem"],
+  "gdal_calc": ["/opt/homebrew//bin/gdal_calc.py"],
+  "gdal_polygonize": ["/opt/homebrew//bin/gdal_polygonize.py"],
+  "gdal_fillnodata": ["/opt/homebrew//bin/gdal_fillnodata.py"]
+}
+```

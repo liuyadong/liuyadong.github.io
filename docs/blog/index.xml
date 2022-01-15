@@ -14,7 +14,7 @@
       
       <guid>https://liuyadong.github.io/blog/2022-01-03-setting-up-sen2r/</guid>
       <description>  Step 1. Install dependencies brew install aria2
- brew install google-cloud-sdk, then configure user account
+ brew install google-cloud-sdk, configure with gcloud init
  download Sen2Cor, then sh Sen2Cor-02.09.00-Darwin64.run --target ~/.sen2r/sen2cor290
  brew install gdal -s
    Step 2. Configure paths (~/.sen2r/paths.json) { &amp;quot;aria2c&amp;quot;: [&amp;quot;/opt/homebrew/bin/aria2c&amp;quot;], &amp;quot;gsutil&amp;quot;: [&amp;quot;/opt/homebrew/bin/gsutil&amp;quot;], &amp;quot;sen2cor&amp;quot;: [&amp;quot;~/.sen2r/sen2cor290/bin/L2A_Process&amp;quot;], &amp;quot;gdalinfo&amp;quot;: [&amp;quot;/opt/homebrew/bin/gdalinfo&amp;quot;], &amp;quot;ogrinfo&amp;quot;: [&amp;quot;/opt/homebrew/bin/ogrinfo&amp;quot;], &amp;quot;gdal_translate&amp;quot;: [&amp;quot;/opt/homebrew/bin/gdal_translate&amp;quot;], &amp;quot;gdalwarp&amp;quot;: [&amp;quot;/opt/homebrew/bin/gdalwarp&amp;quot;], &amp;quot;gdalbuildvrt&amp;quot;: [&amp;quot;/opt/homebrew/bin/gdalbuildvrt&amp;quot;], &amp;quot;gdaldem&amp;quot;: [&amp;quot;/opt/homebrew/bin/gdaldem&amp;quot;], &amp;quot;gdal_calc&amp;quot;: [&amp;quot;/opt/homebrew//bin/gdal_calc.py&amp;quot;], &amp;quot;gdal_polygonize&amp;quot;: [&amp;quot;/opt/homebrew//bin/gdal_polygonize.py&amp;quot;], &amp;quot;gdal_fillnodata&amp;quot;: [&amp;quot;/opt/homebrew//bin/gdal_fillnodata.py&amp;quot;] }  </description>

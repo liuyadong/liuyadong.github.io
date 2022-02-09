@@ -13,7 +13,9 @@ tags: []
 
 2. `brew install google-cloud-sdk`, configure with `gcloud init`
 
-3. download [Sen2Cor](http://step.esa.int/main/snap-supported-plugins/sen2cor/), then `sh Sen2Cor-02.09.00-Darwin64.run --target ~/.sen2r/sen2cor290`
+~~3. download [Sen2Cor](http://step.esa.int/main/snap-supported-plugins/sen2cor/), then `sh Sen2Cor-02.09.00-Darwin64.run --target ~/.sen2r/sen2cor290`~~
+
+3. download [Sen2Cor](http://step.esa.int/main/snap-supported-plugins/sen2cor/), then `sh Sen2Cor-02.10.01-Darwin64.run --target ~/.sen2r/sen2cor` (updated on 2022-02-09)
 
 4. `brew install gdal -s`
 
@@ -23,7 +25,7 @@ tags: []
 {
   "aria2c": ["/opt/homebrew/bin/aria2c"],
   "gsutil": ["/opt/homebrew/bin/gsutil"],
-  "sen2cor": ["~/.sen2r/sen2cor290/bin/L2A_Process"],
+  "sen2cor": ["~/.sen2r/sen2cor/bin/L2A_Process"],
   "gdalinfo": ["/opt/homebrew/bin/gdalinfo"],
   "ogrinfo": ["/opt/homebrew/bin/ogrinfo"],
   "gdal_translate": ["/opt/homebrew/bin/gdal_translate"],

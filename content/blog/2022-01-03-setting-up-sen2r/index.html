@@ -15,7 +15,10 @@ tags: []
 <ol style="list-style-type: decimal">
 <li><p><code>brew install aria2</code></p></li>
 <li><p><code>brew install google-cloud-sdk</code>, configure with <code>gcloud init</code></p></li>
-<li><p>download <a href="http://step.esa.int/main/snap-supported-plugins/sen2cor/">Sen2Cor</a>, then <code>sh Sen2Cor-02.09.00-Darwin64.run --target ~/.sen2r/sen2cor290</code></p></li>
+</ol>
+<p><del>3. download <a href="http://step.esa.int/main/snap-supported-plugins/sen2cor/">Sen2Cor</a>, then <code>sh Sen2Cor-02.09.00-Darwin64.run --target ~/.sen2r/sen2cor290</code></del></p>
+<ol start="3" style="list-style-type: decimal">
+<li><p>download <a href="http://step.esa.int/main/snap-supported-plugins/sen2cor/">Sen2Cor</a>, then <code>sh Sen2Cor-02.10.01-Darwin64.run --target ~/.sen2r/sen2cor</code> (updated on 2022-02-09)</p></li>
 <li><p><code>brew install gdal -s</code></p></li>
 </ol>
 </div>
@@ -24,7 +27,7 @@ tags: []
 <pre class="json"><code>{
   &quot;aria2c&quot;: [&quot;/opt/homebrew/bin/aria2c&quot;],
   &quot;gsutil&quot;: [&quot;/opt/homebrew/bin/gsutil&quot;],
-  &quot;sen2cor&quot;: [&quot;~/.sen2r/sen2cor290/bin/L2A_Process&quot;],
+  &quot;sen2cor&quot;: [&quot;~/.sen2r/sen2cor/bin/L2A_Process&quot;],
   &quot;gdalinfo&quot;: [&quot;/opt/homebrew/bin/gdalinfo&quot;],
   &quot;ogrinfo&quot;: [&quot;/opt/homebrew/bin/ogrinfo&quot;],
   &quot;gdal_translate&quot;: [&quot;/opt/homebrew/bin/gdal_translate&quot;],

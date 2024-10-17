@@ -1,7 +1,11 @@
 ---
 title: Publications
-date: 2020-10-09
+date: 2024-10-17
 ---
+
+## 2024
+
+[10] **Liu, Y**., Li, H., Zhu, L., Chen, B., Li, M., He, H., Zhou, H., Wang, Z., & Yu, Q. (2024). Revealing Cropping Intensity Dynamics Using High-Resolution Imagery: A Case Study in Shaanxi Province, China. *Remote Sensing*, 16(20), 3832. https://doi.org/10.3390/rs16203832
 
 ## 2021
 

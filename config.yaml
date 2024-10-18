@@ -36,7 +36,7 @@ menu:
       weight: 5
 params:
   description: Personal website of Yadong Liu; 刘亚东的个人网站
-  footer: '&copy; [Yadong Liu](/) 2018 - 2022'
+  footer: '&copy; [Yadong Liu](/) 2018 - 2024'
 
 markup:
   goldmark:
